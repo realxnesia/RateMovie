@@ -7,14 +7,16 @@
 
 import UIKit
 import CoreData
+import netfox
+import IQKeyboardManager
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        configureNetfox()
+        IQKeyboardManager.shared().isEnabled = true
         return true
     }
 
@@ -75,6 +77,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    fileprivate func configureNetfox() {
+//        #if DEBUG
+        NFX.sharedInstance().start()
+//        #endif
     }
 
 }

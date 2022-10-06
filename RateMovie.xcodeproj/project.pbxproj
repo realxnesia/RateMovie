@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		7036615B28EEEB7B0015667B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7036615A28EEEB7B0015667B /* AppDelegate.swift */; };
 		7036615D28EEEB7B0015667B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7036615C28EEEB7B0015667B /* SceneDelegate.swift */; };
-		7036615F28EEEB7B0015667B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7036615E28EEEB7B0015667B /* ViewController.swift */; };
-		7036616228EEEB7B0015667B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7036616028EEEB7B0015667B /* Main.storyboard */; };
 		7036616528EEEB7B0015667B /* RateMovie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7036616328EEEB7B0015667B /* RateMovie.xcdatamodeld */; };
 		7036616728EEEB7C0015667B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7036616628EEEB7C0015667B /* Assets.xcassets */; };
 		7036616A28EEEB7C0015667B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7036616828EEEB7C0015667B /* LaunchScreen.storyboard */; };
@@ -40,8 +38,6 @@
 		7036615728EEEB7B0015667B /* RateMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RateMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7036615A28EEEB7B0015667B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7036615C28EEEB7B0015667B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7036615E28EEEB7B0015667B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7036616128EEEB7B0015667B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7036616428EEEB7B0015667B /* RateMovie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RateMovie.xcdatamodel; sourceTree = "<group>"; };
 		7036616628EEEB7C0015667B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7036616928EEEB7C0015667B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -103,8 +99,6 @@
 			children = (
 				7036615A28EEEB7B0015667B /* AppDelegate.swift */,
 				7036615C28EEEB7B0015667B /* SceneDelegate.swift */,
-				7036615E28EEEB7B0015667B /* ViewController.swift */,
-				7036616028EEEB7B0015667B /* Main.storyboard */,
 				7036616628EEEB7C0015667B /* Assets.xcassets */,
 				7036616828EEEB7C0015667B /* LaunchScreen.storyboard */,
 				7036616B28EEEB7C0015667B /* Info.plist */,
@@ -236,7 +230,6 @@
 			files = (
 				7036616A28EEEB7C0015667B /* LaunchScreen.storyboard in Resources */,
 				7036616728EEEB7C0015667B /* Assets.xcassets in Resources */,
-				7036616228EEEB7B0015667B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +254,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7036615F28EEEB7B0015667B /* ViewController.swift in Sources */,
 				7036615B28EEEB7B0015667B /* AppDelegate.swift in Sources */,
 				7036616528EEEB7B0015667B /* RateMovie.xcdatamodeld in Sources */,
 				7036615D28EEEB7B0015667B /* SceneDelegate.swift in Sources */,
@@ -301,14 +293,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7036616028EEEB7B0015667B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7036616128EEEB7B0015667B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7036616828EEEB7C0015667B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -446,7 +430,6 @@
 				INFOPLIST_FILE = RateMovie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -474,7 +457,6 @@
 				INFOPLIST_FILE = RateMovie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

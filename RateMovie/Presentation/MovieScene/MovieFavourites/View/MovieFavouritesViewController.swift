@@ -9,21 +9,39 @@ import UIKit
 
 class MovieFavouritesViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+
+}
+
+extension MovieFavouritesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureTableView()
     }
+}
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension MovieFavouritesViewController {
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(MovieItemTableViewCell.nib(), forCellReuseIdentifier: MovieItemTableViewCell.identifier)
     }
-    */
+}
 
+extension MovieFavouritesViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let movieCell = tableView.dequeueReusableCell(withIdentifier: MovieItemTableViewCell.identifier, for: indexPath) as? MovieItemTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        
+        return movieCell
+    }
+    
+    
 }

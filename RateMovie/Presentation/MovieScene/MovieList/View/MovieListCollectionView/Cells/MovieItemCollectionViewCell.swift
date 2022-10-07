@@ -9,6 +9,11 @@ import UIKit
 
 class MovieItemCollectionViewCell: UICollectionViewCell {
 
+    static let identifier = "MovieItemCollectionViewCell"
+    static func nib() -> UINib {
+        UINib(nibName: identifier, bundle: nil)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

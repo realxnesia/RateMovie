@@ -24,7 +24,8 @@ class TabBarController: UITabBarController {
   func createBaseTabBar() {
     self.viewControllers = [
       makeNavigation(viewController: createMovieListTab()),
-      makeNavigation(viewController: createMovieFavouritesTab())
+      makeNavigation(viewController: createMovieFavouritesTab()),
+      makeNavigation(viewController: createDetailMovieTab())
     ]
   }
   
@@ -76,6 +77,14 @@ extension TabBarController {
     movieFavouritesController.tabBarItem.image = UIImage(systemName: "star")
     movieFavouritesController.tabBarItem.selectedImage = UIImage(systemName: "star.fill")
     return movieFavouritesController
+  }
+  
+  private func createDetailMovieTab() -> UIViewController {
+    let movieDetailController = MovieDetailsViewController()
+    movieDetailController.tabBarItem.title = "Detail"
+    movieDetailController.tabBarItem.image = UIImage(systemName: "star")
+    movieDetailController.tabBarItem.selectedImage = UIImage(systemName: "star.fill")
+    return movieDetailController
   }
   
 }

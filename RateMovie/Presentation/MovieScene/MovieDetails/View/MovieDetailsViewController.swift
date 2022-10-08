@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Kingfisher
 
-class MovieDetailsViewController: UIViewController {
+class MovieDetailsViewController: UIViewController, ClearNavBar {
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var contentImageView: UIImageView!
     @IBOutlet weak var titleMovieLabel: UILabel!
@@ -16,18 +17,32 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var overviewDescriptionLabel: UILabel!
     @IBOutlet weak var recommendationCollectionView: UICollectionView!
     @IBOutlet weak var recommendationCollectionViewHeight: NSLayoutConstraint!
+    
+    var movieResult: MovieNowPlayingResponse.Result?
 }
 
 extension MovieDetailsViewController {
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBackground()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        setupView()
     }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 //        recommendationCollectionViewHeight.constant = recommendationCollectionView.contentSize.height
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        resetNavigationBackground()
     }
 }
 
@@ -36,6 +51,21 @@ extension MovieDetailsViewController {
         recommendationCollectionView.delegate = self
         recommendationCollectionView.dataSource = self
         recommendationCollectionView.register(MovieItemCollectionViewCell.nib(), forCellWithReuseIdentifier: MovieItemCollectionViewCell.identifier)
+    }
+    
+    private func setupView() {
+        if let url = movieResult?.backdropPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
+            headerImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: "outket_kf"), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
+        }
+        
+        if let url = movieResult?.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
+            contentImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: "outket_kf"), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
+        }
+        
+        titleMovieLabel.text = movieResult?.originalTitle
+        rateMovieLabel.text = "⭐ \(String(describing: movieResult?.voteAverage))"
+        overviewDescriptionLabel.text = movieResult?.overview
+        
     }
 }
 

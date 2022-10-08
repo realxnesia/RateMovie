@@ -10,8 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieListViewController" customModule="RateMovie" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="ySS-QW-zSA" id="Kgv-tX-8FG"/>
+                <outlet property="collectionView" destination="ySS-QW-zSA" id="9aF-Xk-1re"/>
                 <outlet property="collectionViewHeight" destination="4PC-6c-ljK" id="2pg-8G-Byh"/>
+                <outlet property="scrollView" destination="AvY-nS-fkm" id="0rI-4H-Ged"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,7 +30,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZqR-LW-yZ6" userLabel="HolderView">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="256"/>
                                     <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ySS-QW-zSA">
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ySS-QW-zSA" customClass="DefaultCollectionView" customModule="RateMovie" customModuleProvider="target">
                                             <rect key="frame" x="2" y="2" width="386" height="252"/>
                                             <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             <constraints>

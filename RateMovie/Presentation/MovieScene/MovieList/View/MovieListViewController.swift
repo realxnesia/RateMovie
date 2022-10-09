@@ -59,12 +59,8 @@ extension MovieListViewController {
     private func bind() {
         viewModel.movieList.observe(on: self) { [weak self] moviee in
             guard let self = self else { return }
-//            self.movieResult = moviee
-            print(self.movieResult)
             self.collectionView.reloadData()
             self.updateCollectionViewHeights()
-//            self?.homePromoCollectionView.invalidateIntrinsicContentSize()
-            
         }
     }
 }
@@ -85,7 +81,7 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
         movieCell.movieRateLabel.text = "⭐ \(String(describing: data.voteAverage))"
         movieCell.movieLanguageLabel.text = data.originalLanguage
         if let url = data.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
-            movieCell.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: "outket_kf"), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
+            movieCell.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
         }
         
         return movieCell
@@ -94,6 +90,10 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let data = viewModel.movieList.value[indexPath.row]
         let vc = MovieDetailsViewController()
+        if let movieId = data.id {
+            let vm = DefaultMovieDetailsViewModel(movieId: movieId)
+            vc.viewModel = vm
+        }
         vc.movieResult = data
         navigationController?.pushViewController(vc, animated: true)
         
@@ -117,7 +117,6 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension UICollectionView {
-    
     func reloads() {
         DispatchQueue.main.async {
             self.reloadData()

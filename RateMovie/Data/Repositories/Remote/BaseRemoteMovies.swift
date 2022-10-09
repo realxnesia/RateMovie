@@ -38,7 +38,7 @@ final class DefaultBaseRemoteMovies: BaseRemoteMovies {
   }
   
   func getSimilarMovies(movieId: Int, _ completion: @escaping ([MovieIdSimilarResponse.Result]) -> Void) {
-    AF.request(Endpoint.baseURL + Endpoint.Movies.baseMovie + "\(movieId)" + Endpoint.apiKey + "&language=en-US&page=1",
+    AF.request(Endpoint.baseURL + Endpoint.Movies.baseMovie + "/\(movieId)" + Endpoint.Movies.getMovieSimilar + Endpoint.apiKey + "&language=en-US&page=1",
                method: .get,
                encoding: JSONEncoding.default
     )
@@ -49,8 +49,8 @@ final class DefaultBaseRemoteMovies: BaseRemoteMovies {
         if let result = data.results {
           completion(result)
         }
-      case .failure:
-        break
+      case .failure(let error):
+        print(error.localizedDescription)
       }
     }
   }

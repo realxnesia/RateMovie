@@ -9,42 +9,43 @@ import Foundation
 
 // MARK: - MovieIdSimilarResponse
 struct MovieIdSimilarResponse: Codable {
-    let page: Int?
     let results: [Result]?
-    let totalPages, totalResults: Int?
+    let totalPages, totalResults, page: Int?
 
     enum CodingKeys: String, CodingKey {
-        case page, results
+        case results
         case totalPages = "total_pages"
         case totalResults = "total_results"
+        case page
     }
     
     // MARK: - Result
     struct Result: Codable {
+        let genreIDS: [Int]?
         let adult: Bool?
         let backdropPath: String?
-        let genreIDS: [Int]?
         let id: Int?
-        let originalLanguage, originalTitle, overview, releaseDate: String?
-        let posterPath: String?
-        let popularity: Double?
-        let title: String?
+        let originalTitle: String?
+        let voteAverage, popularity: Double?
+        let posterPath, overview, title, originalLanguage: String?
+        let voteCount: Int?
+        let releaseDate: String?
         let video: Bool?
-        let voteAverage, voteCount: Int?
 
         enum CodingKeys: String, CodingKey {
+            case genreIDS = "genre_ids"
             case adult
             case backdropPath = "backdrop_path"
-            case genreIDS = "genre_ids"
             case id
-            case originalLanguage = "original_language"
             case originalTitle = "original_title"
-            case overview
-            case releaseDate = "release_date"
-            case posterPath = "poster_path"
-            case popularity, title, video
             case voteAverage = "vote_average"
+            case popularity
+            case posterPath = "poster_path"
+            case overview, title
+            case originalLanguage = "original_language"
             case voteCount = "vote_count"
+            case releaseDate = "release_date"
+            case video
         }
     }
 

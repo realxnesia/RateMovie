@@ -8,19 +8,32 @@
 import Foundation
 
 protocol MovieDetailsViewModelInput {
-    
+    func getMovieIdSimilar(with movieId: Int)
 }
 
 protocol MovieDetailsViewModelOutput {
     var errorMessage: Observable<String> { get }
+    var movieSimilar: Observable<[MovieIdSimilarResponse.Result]> { get }
 }
 
 protocol MovieDetailsViewModel: MovieDetailsViewModelInput, MovieDetailsViewModelOutput { }
 
 final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
-    var errorMessage: Observable<String>
+    let movieSimilar: Observable<[MovieIdSimilarResponse.Result]> = Observable([])
+    var errorMessage: Observable<String> = Observable("")
     
-    init(errorMessage: Observable<String>) {
-        self.errorMessage = errorMessage
+    private let movieSimilarUseCase = DefaultFetchMovieSimilarUseCase()
+    
+    init(movieId: Int) {
+        self.getMovieIdSimilar(with: movieId)
     }
+}
+
+extension DefaultMovieDetailsViewModel {
+    func getMovieIdSimilar(with movieId: Int) {
+        movieSimilarUseCase.getSimilarMovieUC(with: movieId) { [weak self] data in
+            self?.movieSimilar.value = data
+        }
+    }
+    
 }

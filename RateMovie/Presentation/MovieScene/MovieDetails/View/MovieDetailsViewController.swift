@@ -18,9 +18,12 @@ class MovieDetailsViewController: UIViewController, ClearNavBar {
     @IBOutlet weak var recommendationCollectionView: UICollectionView!
     @IBOutlet weak var recommendationCollectionViewHeight: NSLayoutConstraint!
     
+    //TODO: Parsing Data
     var movieResult: MovieNowPlayingResponse.Result?
+    var viewModel: MovieDetailsViewModel?
 }
 
+//MARK: - View Lifecycle
 extension MovieDetailsViewController {
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +35,7 @@ extension MovieDetailsViewController {
         super.viewDidLoad()
         configureCollectionView()
         setupView()
+        bind()
     }
     
     
@@ -46,6 +50,7 @@ extension MovieDetailsViewController {
     }
 }
 
+//MARK: Configuration Method
 extension MovieDetailsViewController {
     private func configureCollectionView() {
         recommendationCollectionView.delegate = self
@@ -55,27 +60,46 @@ extension MovieDetailsViewController {
     
     private func setupView() {
         if let url = movieResult?.backdropPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
-            headerImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: "outket_kf"), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
+            headerImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
         }
         
         if let url = movieResult?.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
-            contentImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: "outket_kf"), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
+            contentImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
         }
         
         titleMovieLabel.text = movieResult?.originalTitle
         rateMovieLabel.text = "⭐ \(String(describing: movieResult?.voteAverage))"
         overviewDescriptionLabel.text = movieResult?.overview
-        
+    }
+    
+    private func bind() {
+        viewModel?.movieSimilar.observe(on: self) { [weak self] movieSimilar in
+            self?.recommendationCollectionView.reloadData()
+            if movieSimilar.count != 0 {
+                self?.recommendationCollectionView.reloadData()
+            }
+        }
     }
 }
 
+//MARK: - Collection View
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return viewModel?.movieSimilar.value.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let movieItem = collectionView.dequeueReusableCell(withReuseIdentifier: MovieItemCollectionViewCell.identifier, for: indexPath) as? MovieItemCollectionViewCell {
+        if let movieItem = collectionView.dequeueReusableCell(withReuseIdentifier: MovieItemCollectionViewCell.identifier, for: indexPath) as? MovieItemCollectionViewCell,
+           let data = viewModel?.movieSimilar.value[indexPath.row],
+           let voteAverage = data.voteAverage {
+
+            movieItem.movieTitleLabel.text = data.originalTitle
+            
+            movieItem.movieRateLabel.text = "⭐ \(String(describing: voteAverage))"
+            movieItem.movieLanguageLabel.text = data.originalLanguage
+            if let url = data.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
+                movieItem.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
+            }
             
             return movieItem
         }
@@ -84,10 +108,12 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
     
 }
 
+//MARK: - Collection Flow Layout
 extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenSize = UIScreen.main.bounds
         return CGSize(width: screenSize.width/3 - 16, height: screenSize.height/3 - 16)
+//        return CGSize(width: 400, height: 400)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

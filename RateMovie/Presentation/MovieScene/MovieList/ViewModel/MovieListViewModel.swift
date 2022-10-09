@@ -27,12 +27,15 @@ final class DefaultMovieListViewModel: MovieListViewModel {
     let errorMessage: Observable<String> = Observable("")
     let movieList: Observable<[MovieNowPlayingResponse.Result]> = Observable([])
     
-    //TDODO: Domain
+    //TODO: Domain
     private let movieListUsecase = DefaultFetchMovieUseCase()
     init() {
         getMovieNowPlaying()
     }
     
+}
+
+extension DefaultMovieListViewModel {
     func getMovieNowPlaying() {
         self.isLoading.value = true
         movieListUsecase.getMovieNowPlayingUC { [weak self] ress in
@@ -41,15 +44,4 @@ final class DefaultMovieListViewModel: MovieListViewModel {
             self.isLoading.value = false
         }
     }
-}
-
-extension DefaultMovieListViewModel {
-//    func getMovieNowPlaying() {
-//        self.isLoading.value = true
-//        movieListUsecase.getMovieNowPlayingUC { [weak self] ress in
-//            guard let self else { return }
-//            self.movieList.value = ress
-//            self.isLoading.value = false
-//        }
-//    }
 }

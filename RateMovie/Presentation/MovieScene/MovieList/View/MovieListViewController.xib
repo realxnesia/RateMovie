@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,13 +27,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="390" height="763"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZqR-LW-yZ6" userLabel="HolderView">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="256"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="300"/>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ySS-QW-zSA" customClass="DefaultCollectionView" customModule="RateMovie" customModuleProvider="target">
-                                            <rect key="frame" x="2" y="2" width="386" height="252"/>
-                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="300"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="252" id="4PC-6c-ljK"/>
+                                                <constraint firstAttribute="height" constant="300" id="4PC-6c-ljK"/>
                                             </constraints>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="R3Y-NC-C7e">
                                                 <size key="itemSize" width="128" height="128"/>
@@ -44,12 +43,11 @@
                                             </collectionViewFlowLayout>
                                         </collectionView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     <constraints>
-                                        <constraint firstItem="ySS-QW-zSA" firstAttribute="top" secondItem="ZqR-LW-yZ6" secondAttribute="top" constant="2" id="R45-TV-1HT"/>
-                                        <constraint firstAttribute="trailing" secondItem="ySS-QW-zSA" secondAttribute="trailing" constant="2" id="Wia-Er-2SR"/>
-                                        <constraint firstAttribute="bottom" secondItem="ySS-QW-zSA" secondAttribute="bottom" constant="2" id="fEc-gV-3vr"/>
-                                        <constraint firstItem="ySS-QW-zSA" firstAttribute="leading" secondItem="ZqR-LW-yZ6" secondAttribute="leading" constant="2" id="hLw-UB-tjF"/>
+                                        <constraint firstItem="ySS-QW-zSA" firstAttribute="top" secondItem="ZqR-LW-yZ6" secondAttribute="top" id="R45-TV-1HT"/>
+                                        <constraint firstAttribute="trailing" secondItem="ySS-QW-zSA" secondAttribute="trailing" id="Wia-Er-2SR"/>
+                                        <constraint firstAttribute="bottom" secondItem="ySS-QW-zSA" secondAttribute="bottom" id="fEc-gV-3vr"/>
+                                        <constraint firstItem="ySS-QW-zSA" firstAttribute="leading" secondItem="ZqR-LW-yZ6" secondAttribute="leading" id="hLw-UB-tjF"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -63,7 +61,7 @@
                             <viewLayoutGuide key="frameLayoutGuide" id="xL5-T9-aNN"/>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="AvY-nS-fkm" secondAttribute="trailing" id="344-ku-TOs"/>
                         <constraint firstItem="AvY-nS-fkm" firstAttribute="leading" secondItem="C5T-Gv-Hnu" secondAttribute="leading" id="AJ1-uf-cj2"/>
@@ -74,7 +72,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemRedColor"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="C5T-Gv-Hnu" secondAttribute="bottom" id="rL7-Se-svt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="C5T-Gv-Hnu" secondAttribute="trailing" id="rgd-49-QYx"/>
@@ -84,18 +82,4 @@
             <point key="canvasLocation" x="136.92307692307691" y="20.616113744075829"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

@@ -16,7 +16,7 @@ protocol BaseRemoteMovies {
   mutating func getMovieDetails(movieId: Int, completion: @escaping(MovieDetail) -> Void)
 }
 
-final class DefaultBaseRemoteMovies: BaseRemoteMovies {
+struct DefaultBaseRemoteMovies: BaseRemoteMovies {
   
   func getMoviewNowPlaying(_ completion: @escaping ([MovieNowPlayingResponse.Result]) -> Void) {
     AF.request("\(Endpoint.baseURL)\(Endpoint.Movies.getNowPlaying)\(Endpoint.apiKey)&language=en-US&page=1",

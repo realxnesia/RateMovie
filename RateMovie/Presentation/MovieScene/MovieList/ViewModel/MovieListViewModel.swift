@@ -11,6 +11,7 @@ import Foundation
 
 protocol MovieListViewModelInput {
     func getMovieNowPlaying()
+    func addMovieToFavorite(which movie: MoviesFavouritesModel)
 }
 
 protocol MovieListViewModelOutput {
@@ -22,7 +23,6 @@ protocol MovieListViewModelOutput {
 protocol MovieListViewModel: MovieListViewModelInput, MovieListViewModelOutput { }
 
 final class DefaultMovieListViewModel: MovieListViewModel {
-    
     let isLoading: Observable<Bool> = Observable(false)
     let errorMessage: Observable<String> = Observable("")
     let movieList: Observable<[MovieNowPlayingResponse.Result]> = Observable([])
@@ -30,7 +30,7 @@ final class DefaultMovieListViewModel: MovieListViewModel {
     //TODO: Domain
     private let movieListUsecase = DefaultFetchMovieUseCase()
     init() {
-        getMovieNowPlaying()
+//        getMovieNowPlaying()
     }
     
 }
@@ -43,5 +43,9 @@ extension DefaultMovieListViewModel {
             self.movieList.value = ress
             self.isLoading.value = false
         }
+    }
+    
+    func addMovieToFavorite(which movie: MoviesFavouritesModel) {
+        movieListUsecase.addMovieToFavourites(which: movie)
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class MovieListViewController: UIViewController {
+class MovieListViewController: UIViewController, RedNavBar {
 
     private var movieResult: [MovieNowPlayingResponse.Result]?
     
@@ -20,12 +20,21 @@ class MovieListViewController: UIViewController {
 }
 
 extension MovieListViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBackground()
+        viewModel.getMovieNowPlaying()
+        collectionView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-//        viewModel.getMovieNowPlaying()
         verticalCollectionConfigure()
         bind()
+        setupView()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -35,11 +44,17 @@ extension MovieListViewController {
         collectionViewHeight.constant = recommendationHeight ?? 0
         self.view.layoutIfNeeded()
     }
-    
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        resetNavigationBackground()
+    }
 }
 
 extension MovieListViewController {
+    private func setupView () {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Movie"
+    }
     private func verticalCollectionConfigure() {
         collectionView.isBouncesVertical = true
     }
@@ -63,6 +78,7 @@ extension MovieListViewController {
             self.updateCollectionViewHeights()
         }
     }
+
 }
 
 extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -78,10 +94,26 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
         
         let data = viewModel.movieList.value[indexPath.row]
         movieCell.movieTitleLabel.text = data.title
-        movieCell.movieRateLabel.text = "⭐ \(String(describing: data.voteAverage))"
+        if let movieRate = data.voteAverage {
+            movieCell.movieRateLabel.text = "⭐ \(String(describing: movieRate))/10"
+        }
         movieCell.movieLanguageLabel.text = data.originalLanguage
         if let url = data.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
             movieCell.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
+        }
+        
+        movieCell.onFavouriteTapped = { [weak self] in
+            let id = data.id
+            let title = data.title
+            let originalLanguage = data.originalLanguage
+            let posterPath = data.posterPath
+            let voteAverage = data.voteAverage
+            let selectedData = MoviesFavouritesModel(id: id,
+                                                   title: title,
+                                                   originalLanguage: originalLanguage,
+                                                   posterPath: posterPath,
+                                                   voteAverage: voteAverage)
+            self?.viewModel.addMovieToFavorite(which: selectedData)
         }
         
         return movieCell
@@ -103,8 +135,10 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
 
 extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenSize = UIScreen.main.bounds
-        return CGSize(width: screenSize.width/3 - 16, height: screenSize.height/3 - 16)
+        let width = collectionView.frame.size.width
+        let twoColumnCellWidth = (width - 40) / 3
+
+        return CGSize(width: twoColumnCellWidth, height: width / 2 + 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -112,7 +146,7 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 2, left: 8, bottom: 0, right: 8)
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }
 

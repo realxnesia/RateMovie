@@ -25,12 +25,13 @@ class MovieDetailsViewController: UIViewController, ClearNavBar {
 
 //MARK: - View Lifecycle
 extension MovieDetailsViewController {
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBackground()
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
@@ -38,10 +39,10 @@ extension MovieDetailsViewController {
         bind()
     }
     
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 //        recommendationCollectionViewHeight.constant = recommendationCollectionView.contentSize.height
+//        recommendationCollectionViewHeight.constant = recommendationCollectionView.collectionViewLayout.collectionViewContentSize.height
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,6 +60,7 @@ extension MovieDetailsViewController {
     }
     
     private func setupView() {
+        headerImageView.contentMode = .scaleAspectFit
         if let url = movieResult?.backdropPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
             headerImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
         }
@@ -68,7 +70,10 @@ extension MovieDetailsViewController {
         }
         
         titleMovieLabel.text = movieResult?.originalTitle
-        rateMovieLabel.text = "⭐ \(String(describing: movieResult?.voteAverage))"
+        if let rateMovie = movieResult?.voteAverage {
+            rateMovieLabel.text = "⭐" + String(rateMovie)
+        }
+//        rateMovieLabel.text = "⭐ \(String(describing: movieResult?.voteAverage))"
         overviewDescriptionLabel.text = movieResult?.overview
     }
     
@@ -77,6 +82,10 @@ extension MovieDetailsViewController {
             self?.recommendationCollectionView.reloadData()
             if movieSimilar.count != 0 {
                 self?.recommendationCollectionView.reloadData()
+//                self?.recommendationCollectionViewHeight.constant = (self?.recommendationCollectionView.collectionViewLayout.collectionViewContentSize.height)!
+                self?.recommendationCollectionView.invalidateIntrinsicContentSize()
+                self?.recommendationCollectionView.setNeedsLayout()
+                self?.recommendationCollectionView.layoutIfNeeded()
             }
         }
     }
@@ -112,7 +121,12 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
 extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenSize = UIScreen.main.bounds
-        return CGSize(width: screenSize.width/3 - 16, height: screenSize.height/3 - 16)
+        let height = collectionView.frame.size.height
+        let width = collectionView.frame.size.width
+        let twoColumnCellWidth = (width - 40) / 3
+//        recommendationCollectionViewHeight.constant = screenSize.height/3 - 16
+//        return CGSize(width: screenSize.width/3 - 16, height: screenSize.height/2 - 20)
+        return CGSize(width: twoColumnCellWidth, height: height)
 //        return CGSize(width: 400, height: 400)
     }
     
@@ -121,6 +135,6 @@ extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 2, left: 8, bottom: 0, right: 8)
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }

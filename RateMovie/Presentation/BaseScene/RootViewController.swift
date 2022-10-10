@@ -14,9 +14,6 @@ enum BackgroundColorType: String {
 }
 
 class RootViewController: UINavigationController {
-    
-//    var isWhiteContentBackground = true
-  
   // MARK: - Lifecycle
   private let currentVersion = (UIDevice.current.systemVersion as NSString).floatValue
   override func viewDidLoad() {
@@ -135,12 +132,12 @@ extension WhiteNavBar where Self: UIViewController {
   }
 }
 
-protocol OrangeNavBar{}
-extension OrangeNavBar where Self: UIViewController {
+protocol RedNavBar{}
+extension RedNavBar where Self: UIViewController {
 
     func setNavigationBackground() {
       if let nav = navigationController as? RootViewController {
-          nav.setBackgroundColor(with: .orange, titleColor: .white)
+          nav.setBackgroundColor(with: hexStringToUIColor(hex: "831010"), titleColor: .white)
           nav.setBackgroundWithImage(backgroundColor: .white)
         nav.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black ]
           nav.navigationBar.layer.shadowColor = UIColor.gray.cgColor
@@ -152,7 +149,7 @@ extension OrangeNavBar where Self: UIViewController {
     
     func resetNavigationBackground() {
         if let nav = navigationController as? RootViewController {
-            nav.setBackgroundColor(with: .systemOrange, titleColor: .white)
+            nav.setBackgroundColor(with: .red, titleColor: .white)
             nav.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
             nav.navigationBar.layer.shadowColor = UIColor.clear.cgColor
         }

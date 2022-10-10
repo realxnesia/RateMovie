@@ -11,19 +11,26 @@ protocol BaseMovieRepositoryProtocol {
   func getMoviesNowPlaying(_ completion: @escaping([MovieNowPlayingResponse.Result]) -> Void)
   func getSimilarMovies(movieId: Int, _ completion: @escaping([MovieIdSimilarResponse.Result]) -> Void)
   func getMovieDetails(movieId: Int, completion: @escaping(MovieDetail) -> Void)
+  
+  func getMoviesFavouriteLocaly(_ completion: @escaping(_ data: [MoviesFavouritesModel]) -> Void)
+  func addMoviesFavorite(_ favouriteData: MoviesFavouritesModel)
+  func deleteMoviesFavourite(with id: Int)
 }
 
 final class DefaultBaseMoviewRepository: BaseMovieRepositoryProtocol {
-  
+  //TODO: Direct to the Class
   private var remoteData: DefaultBaseRemoteMovies
-//  private var localData: BaseLocalMovies
+  private var localData: DefaultBaseLocalMovies
   
-  init() {
-    self.remoteData = DefaultBaseRemoteMovies()
+  init(remoteData: DefaultBaseRemoteMovies = DefaultBaseRemoteMovies(),
+       localData: DefaultBaseLocalMovies = DefaultBaseLocalMovies()) {
+    self.remoteData = remoteData
+    self.localData = localData
   }
   
 }
 
+//MARK: - Remote
 extension DefaultBaseMoviewRepository {
   func getMoviesNowPlaying(_ completion: @escaping ([MovieNowPlayingResponse.Result]) -> Void) {
     remoteData.getMoviewNowPlaying { data in
@@ -40,6 +47,31 @@ extension DefaultBaseMoviewRepository {
   func getMovieDetails(movieId: Int, completion: @escaping (MovieDetail) -> Void) {
     remoteData.getMovieDetails(movieId: movieId) { data in
       completion(data)
+    }
+  }
+}
+
+//MARK: - Local
+extension DefaultBaseMoviewRepository {
+  func getMoviesFavouriteLocaly(_ completion: @escaping ([MoviesFavouritesModel]) -> Void) {
+    localData.getAllFavouriteMovie { data in
+      completion(data)
+    }
+  }
+  
+  func addMoviesFavorite(_ favouriteData: MoviesFavouritesModel) {
+    do {
+      try localData.addFavourite(favouriteData)
+    } catch {
+      print(error.localizedDescription)
+    }
+  }
+  
+  func deleteMoviesFavourite(with id: Int) {
+    do {
+      try localData.deleteFavourite(with: id)
+    } catch {
+      print(error.localizedDescription)
     }
   }
 }

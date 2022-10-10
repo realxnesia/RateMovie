@@ -9,7 +9,7 @@ import Foundation
 
 protocol FetchMovieProtocolUseCase {
     mutating func getMovieNowPlayingUC(_ completion: @escaping ([MovieNowPlayingResponse.Result]) -> Void)
-    mutating func addMovieToFavourites()
+    mutating func addMovieToFavourites(which movie: MoviesFavouritesModel)
 }
 
 final class DefaultFetchMovieUseCase: FetchMovieProtocolUseCase {
@@ -27,6 +27,7 @@ extension DefaultFetchMovieUseCase {
         }
     }
     
-    func addMovieToFavourites() {
+    func addMovieToFavourites(which movie: MoviesFavouritesModel) {
+        repository.addMoviesFavorite(movie)
     }
 }

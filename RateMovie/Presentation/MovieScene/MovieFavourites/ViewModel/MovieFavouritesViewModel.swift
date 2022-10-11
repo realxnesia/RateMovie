@@ -10,6 +10,7 @@ import Foundation
 protocol MovieFavouritesViewModelInput {
     func getListFavorite()
     func deleteFavorite(with id: Int)
+//    func getMovieSelectedFavorite(with movieId: Int)
 }
 
 protocol MovieFavouritesViewModelOutput {
@@ -20,6 +21,10 @@ protocol MovieFavouritesViewModelOutput {
 protocol MovieFavouritesViewModel: MovieFavouritesViewModelInput, MovieFavouritesViewModelOutput { }
 
 final class DefaultMovieFavouritesViewModel: MovieFavouritesViewModel {
+//    func getMovieSelectedFavorite(with movieId: Int) {
+//        useCaseFavorite.getMovieSelectedFavorite(with: movieId, <#T##completion: (Bool) -> Void##(Bool) -> Void#>)
+//    }
+    
     let errorMessage: Observable<String> = Observable("")
     let movieFavouriteList: Observable<[MoviesFavouritesModel]> = Observable([])
     

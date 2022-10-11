@@ -13,6 +13,7 @@ protocol BaseMovieRepositoryProtocol {
   func getMovieDetails(movieId: Int, completion: @escaping(MovieDetail) -> Void)
   
   func getMoviesFavouriteLocaly(_ completion: @escaping(_ data: [MoviesFavouritesModel]) -> Void)
+  func getSelectedMoviesFavourite(with id: Int, completion: @escaping(Bool) -> Void)
   func addMoviesFavorite(_ favouriteData: MoviesFavouritesModel)
   func deleteMoviesFavourite(with id: Int)
 }
@@ -72,6 +73,12 @@ extension DefaultBaseMoviewRepository {
       try localData.deleteFavourite(with: id)
     } catch {
       print(error.localizedDescription)
+    }
+  }
+  
+  func getSelectedMoviesFavourite(with id: Int, completion: @escaping (Bool) -> Void) {
+    localData.getSelectedFavourite(id) { isFavorite in
+      completion(isFavorite)
     }
   }
 }

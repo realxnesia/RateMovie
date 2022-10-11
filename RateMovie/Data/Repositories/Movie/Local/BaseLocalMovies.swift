@@ -10,12 +10,12 @@ import CoreData
 
 protocol BaseLocalMoviesProtocol {
     mutating func getAllFavouriteMovie(completion: @escaping(_ members: [MoviesFavouritesModel]) -> Void)
+    mutating func getSelectedFavourite(_ id: Int, completion: @escaping(_ bool: Bool) -> Void)
     mutating func addFavourite(_ favouriteModel: MoviesFavouritesModel) throws
     mutating func deleteFavourite(with id: Int) throws
 }
 
 struct DefaultBaseLocalMovies: BaseLocalMoviesProtocol {
-    
     private lazy var persistentContainer: NSPersistentContainer = {
        let container = NSPersistentContainer(name: "RateMovie")
         container.loadPersistentStores { _, error in
@@ -33,6 +33,24 @@ struct DefaultBaseLocalMovies: BaseLocalMoviesProtocol {
         taskContext.undoManager = nil
         taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return taskContext
+    }
+    
+    mutating func getSelectedFavourite(_ id: Int, completion: @escaping (Bool) -> Void) {
+        let taskContext = newTaskContext()
+        taskContext.perform {
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MoviesFavourite")
+            fetchRequest.fetchLimit = 1
+            fetchRequest.predicate = NSPredicate(format: "id == \(id)")
+            do {
+                if (try taskContext.fetch(fetchRequest).first) != nil {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        }
     }
     
     mutating func getAllFavouriteMovie(completion: @escaping ([MoviesFavouritesModel]) -> Void) {
@@ -93,6 +111,4 @@ struct DefaultBaseLocalMovies: BaseLocalMoviesProtocol {
             }
         }
     }
-    
-    
 }

@@ -10,6 +10,7 @@ import Foundation
 protocol MovieFavoritesUseCaseProtocol {
     mutating func getListFavorite(_ completion: @escaping([MoviesFavouritesModel]) -> Void)
     mutating func deleteFavorite(with id: Int)
+    mutating func getMovieSelectedFavorite(with movieId: Int, _ completion: @escaping(Bool) -> Void)
 }
 
 final class DefaultMovieFavoritesUseCase: MovieFavoritesUseCaseProtocol {
@@ -29,5 +30,9 @@ final class DefaultMovieFavoritesUseCase: MovieFavoritesUseCaseProtocol {
         repository.deleteMoviesFavourite(with: id)
     }
     
-    
+    func getMovieSelectedFavorite(with movieId: Int, _ completion: @escaping (Bool) -> Void) {
+        repository.getSelectedMoviesFavourite(with: movieId) { isFav in
+            completion(isFav)
+        }
+    }
 }

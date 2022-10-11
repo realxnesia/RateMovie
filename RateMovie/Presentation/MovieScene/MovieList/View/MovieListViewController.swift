@@ -77,6 +77,11 @@ extension MovieListViewController {
             self.collectionView.reloadData()
             self.updateCollectionViewHeights()
         }
+//        viewModel.movieListResultFiltered.observe(on: self) { [weak self] moviee in
+//            guard let self = self else { return }
+//            self.collectionView.reloadData()
+//            self.updateCollectionViewHeights()
+//        }
     }
 
 }
@@ -84,6 +89,7 @@ extension MovieListViewController {
 extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.movieList.value.count
+//        return viewModel.movieListResultFiltered.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -93,6 +99,7 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         
         let data = viewModel.movieList.value[indexPath.row]
+//        let data = viewModel.movieListResultFiltered.value[indexPath.row]
         movieCell.movieTitleLabel.text = data.title
         if let movieRate = data.voteAverage {
             movieCell.movieRateLabel.text = "⭐ \(String(describing: movieRate))/10"
@@ -101,6 +108,8 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
         if let url = data.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
             movieCell.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
         }
+        
+//        movieCell.movieFavoriteImageView.image = data.isFavorite! ? UIImage(systemName: "bookmark") : UIImage(named: "bookmark.fill")
         
         movieCell.onFavouriteTapped = { [weak self] in
             let id = data.id

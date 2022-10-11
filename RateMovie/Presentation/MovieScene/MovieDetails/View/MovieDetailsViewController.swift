@@ -88,6 +88,10 @@ extension MovieDetailsViewController {
                 self?.recommendationCollectionView.layoutIfNeeded()
             }
         }
+        
+        viewModel?.isFavorite.observe(on: self, observerBlock: { isFav in
+            print("ini fav kah? \(isFav)")
+        })
     }
 }
 

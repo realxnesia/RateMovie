@@ -19,7 +19,7 @@ class MovieDetailsViewController: UIViewController, ClearNavBar {
     @IBOutlet weak var recommendationCollectionViewHeight: NSLayoutConstraint!
     
     //TODO: Parsing Data
-    var movieResult: MovieNowPlayingResponse.Result?
+    var movieResult: FavoriteNowPlaying?
     var viewModel: MovieDetailsViewModel?
 }
 
@@ -110,11 +110,15 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
             
             movieItem.movieRateLabel.text = "⭐ \(String(describing: voteAverage))"
             movieItem.movieLanguageLabel.text = data.originalLanguage
+            movieItem.favoriteView.isHidden = true
+            movieItem.movieFavoriteImageView.isHidden = true
+            
             if let url = data.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
                 movieItem.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
             }
-            
+
             return movieItem
+
         }
         return UICollectionViewCell()
     }

@@ -196,7 +196,7 @@ extension ShadowNavBar where Self: UIViewController {
           nav.navigationBar.isTranslucent = true
           nav.navigationBar.setBackgroundImage(UIImage(), for: .default)
           
-          nav.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black ?? .black]
+          nav.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
           nav.navigationBar.layer.shadowColor = UIColor.gray.cgColor
           nav.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 0.5)
           nav.navigationBar.layer.shadowRadius = 0.5

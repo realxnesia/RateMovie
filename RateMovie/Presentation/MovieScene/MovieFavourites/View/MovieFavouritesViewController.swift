@@ -21,10 +21,11 @@ extension MovieFavouritesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBackground()
-        viewModel.getListFavorite()
+        self.viewModel.getListFavorite()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Favorite"
         configureTableView()
         bind()
     }
@@ -38,10 +39,12 @@ extension MovieFavouritesViewController {
     }
     
     private func bind() {
-        viewModel.movieFavouriteList.observe(on: self) { [weak self] data in
-            if data.count != 0 {
+        viewModel.movieFavouriteList.observe(on: self) { [weak self] movieFavorites in
+//            if movieFavorites.count != 0 {
+            DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
+//            }
         }
     }
 }
@@ -66,9 +69,14 @@ extension MovieFavouritesViewController: UITableViewDelegate, UITableViewDataSou
         }
         movieCell.onTapFavourite = { [weak self] in
             guard let movieId = data.id else { return }
-            self?.viewModel.deleteFavorite(with: movieId)
+            DispatchQueue.main.async {
+                self?.viewModel.deleteFavorite(with: movieId)
+            }
+            
 //            self?.viewModel.getListFavorite()
 //            self?.tableView.reloadData()
+//            self?.viewModel.getListFavorite()
+            print("ini movie yg dihapus: \(data)")
         }
         return movieCell
     }

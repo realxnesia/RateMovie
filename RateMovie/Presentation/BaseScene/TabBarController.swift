@@ -24,8 +24,7 @@ class TabBarController: UITabBarController {
   func createBaseTabBar() {
     self.viewControllers = [
       makeNavigation(viewController: createMovieListTab()),
-      makeNavigation(viewController: createMovieFavouritesTab()),
-      makeNavigation(viewController: createDetailMovieTab())
+      makeNavigation(viewController: createMovieFavouritesTab())
     ]
   }
   

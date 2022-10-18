@@ -12,13 +12,13 @@ import Foundation
 protocol MovieListViewModelInput {
     func getMovieNowPlaying()
     func addMovieToFavorite(which movie: MoviesFavouritesModel)
-    func getMovieSelectedFavorite(with movieId: Int)
+    func deleteFavorite(with id: Int)
 }
 
 protocol MovieListViewModelOutput {
     var isLoading: Observable<Bool> { get }
     var errorMessage: Observable<String> { get }
-    var movieList: Observable<[MovieNowPlayingResponse.Result]> { get }
+    var movieList: Observable<[FavoriteNowPlaying]> { get }
     var movieListResultFiltered: Observable<[FavoriteNowPlaying]> { get }
     var movieListFiltered: [FavoriteNowPlaying] { get }
     var isFavorite: Observable<Bool> { get }
@@ -37,7 +37,7 @@ final class DefaultMovieListViewModel: MovieListViewModel {
     
     let isLoading: Observable<Bool> = Observable(false)
     let errorMessage: Observable<String> = Observable("")
-    let movieList: Observable<[MovieNowPlayingResponse.Result]> = Observable([])
+    let movieList: Observable<[FavoriteNowPlaying]> = Observable([])
     let isFavorite: Observable<Bool> = Observable(false)
     
     //TODO: Domain
@@ -53,50 +53,76 @@ extension DefaultMovieListViewModel {
         self.isLoading.value = true
         movieListUsecase.getMovieNowPlayingUC { [weak self] ress in
             guard let self else { return }
-            self.movieList.value = ress
-            self.isLoading.value = false
-
-            let _ = ress.map { data in
-                self.movieListFiltered.removeAll()
-                if let id = data.id {
-                    self.movieListUsecase.getMovieSelectedFavorite(with: id) { isFavorite in
-                        print("isFav: \(isFavorite)")
-                        let data = FavoriteNowPlaying(isFavorite: isFavorite,
-                                                      posterPath: data.posterPath,
-                                                      adult: data.adult,
-                                                      overview: data.overview,
-                                                      releaseDate: data.releaseDate,
-                                                      genreIDS: data.genreIDS,
-                                                      id: data.id,
-                                                      originalTitle: data.originalTitle,
-                                                      originalLanguage: data.originalLanguage,
-                                                      title: data.title,
-                                                      backdropPath: data.backdropPath,
-                                                      popularity: data.popularity,
-                                                      voteCount: data.voteCount,
-                                                      video: data.video,
-                                                      voteAverage: data.voteAverage)
-                        print("datanew \(data)")
-                        self.movieListFiltered.append(data)
-                    }
-                    self.movieListResultFiltered.value = self.movieListFiltered
-                }
-                
-            }
-            
+            self.movieListFiltered.removeAll()
+            self.filteredMovies(with: ress)
         }
         
     }
     
-    func addMovieToFavorite(which movie: MoviesFavouritesModel) {
-        movieListUsecase.addMovieToFavourites(which: movie)
+    private func filteredMovies(with response: [MovieNowPlayingResponse.Result]) {
+        movieListUsecase.getMoviesFavorite { favorites in
+            let data = favorites.flatMap { favorite in
+                response.filter { data in
+                    return data.title == favorite.title
+                }
+            }
+            
+            let dataTemp = self.convertData(with: response, isFavorite: false)
+            let favTemp = self.convertData(with: data, isFavorite: true)
+            self.isLoading.value = false
+            self.filtereee(movies: dataTemp, favorites: favTemp)
+        }
     }
+    
+    private func filtereee(movies: [FavoriteNowPlaying], favorites: [FavoriteNowPlaying]) {
+        var movieNow = movies
+        for (indexMov, categoryMov) in movieNow.enumerated() {
+            for (_, categoryFav) in favorites.enumerated() {
+                if categoryFav.title == categoryMov.title {
+                    movieNow.remove(at: indexMov)
+                    movieNow.insert(categoryFav, at: indexMov)
+                }
+            }
+            self.movieList.value = movieNow
+        }
+        
+    }
+        
+    private func convertData(with movies: [MovieNowPlayingResponse.Result], isFavorite: Bool) -> [FavoriteNowPlaying] {
+        return movies.compactMap {
+            FavoriteNowPlaying(isFavorite: isFavorite,
+                               posterPath: $0.posterPath,
+                              adult: $0.adult,
+                              overview: $0.overview,
+                              releaseDate: $0.releaseDate,
+                              genreIDS: $0.genreIDS,
+                              id: $0.id,
+                              originalTitle: $0.originalTitle,
+                              originalLanguage: $0.originalLanguage,
+                              title: $0.title,
+                              backdropPath: $0.backdropPath,
+                              popularity: $0.popularity,
+                              voteCount: $0.voteCount,
+                              video: $0.video,
+                              voteAverage: $0.voteAverage)
+        }
+    }
+    
 }
 
 extension DefaultMovieListViewModel {
-    func getMovieSelectedFavorite(with movieId: Int) {
-        movieListUsecase.getMovieSelectedFavorite(with: movieId) { isFavorite in
-            
+    func addMovieToFavorite(which movie: MoviesFavouritesModel) {
+        print("Add to fav: \(movie)")
+        movieListUsecase.addMovieToFavourites(which: movie)
+        self.getMovieNowPlaying()
+    }
+    
+    func deleteFavorite(with id: Int) {
+        print("ini movie yg dihapus id: \(id)")
+        DispatchQueue.main.async {
+            self.movieListUsecase.deleteFavorite(with: id)
+            self.getMovieNowPlaying()
         }
+
     }
 }

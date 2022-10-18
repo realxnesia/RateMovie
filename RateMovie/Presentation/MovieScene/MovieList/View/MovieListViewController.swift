@@ -27,7 +27,7 @@ extension MovieListViewController {
         super.viewWillAppear(animated)
         setNavigationBackground()
         viewModel.getMovieNowPlaying()
-        collectionView.reloadData()
+//        collectionView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +99,6 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         
         let data = viewModel.movieList.value[indexPath.row]
-//        let data = viewModel.movieListResultFiltered.value[indexPath.row]
         movieCell.movieTitleLabel.text = data.title
         if let movieRate = data.voteAverage {
             movieCell.movieRateLabel.text = "⭐ \(String(describing: movieRate))/10"
@@ -109,7 +108,8 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
             movieCell.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
         }
         
-//        movieCell.movieFavoriteImageView.image = data.isFavorite! ? UIImage(systemName: "bookmark") : UIImage(named: "bookmark.fill")
+        movieCell.movieFavoriteImageView.image = data.isFavorite! ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
+
         
         movieCell.onFavouriteTapped = { [weak self] in
             let id = data.id
@@ -122,7 +122,17 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
                                                    originalLanguage: originalLanguage,
                                                    posterPath: posterPath,
                                                    voteAverage: voteAverage)
-            self?.viewModel.addMovieToFavorite(which: selectedData)
+            if let isFavorite = data.isFavorite {
+                if isFavorite {
+                    self?.viewModel.deleteFavorite(with: id!)
+                    movieCell.movieFavoriteImageView.image = UIImage(systemName: "bookmark")
+                } else {
+                    self?.viewModel.addMovieToFavorite(which: selectedData)
+                    movieCell.movieFavoriteImageView.image = UIImage(systemName: "bookmark.fill")
+                }
+
+            }
+//            self?.viewModel.getMovieNowPlaying()
         }
         
         return movieCell

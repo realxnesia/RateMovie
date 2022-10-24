@@ -1,0 +1,35 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'RateMovie' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for RateMovie
+  pod 'Kingfisher'
+  pod 'SkeletonView'
+  pod "TTGSnackbar"	
+  pod 'netfox', :configurations => ['Debug', 'Release']
+  pod 'IQKeyboardManager' #iOS8 and later
+  pod 'Alamofire'
+  
+  target 'Router' do
+  project 'Router/Router.project'
+  end 
+
+  target 'RateMovie' do
+  project 'RateMovie.project'
+  end 
+
+  target 'RateMovieTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'RateMovieUITests' do
+    # Pods for testing
+  end
+
+end
+
+

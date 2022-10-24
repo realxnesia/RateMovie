@@ -1,0 +1,32 @@
+PODS:
+  - Alamofire (5.6.2)
+  - Kingfisher (7.3.2)
+  - netfox (1.21.0)
+  - SkeletonView (1.30.2)
+  - TTGSnackbar (1.11.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - Kingfisher
+  - netfox
+  - SkeletonView
+  - TTGSnackbar
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Kingfisher
+    - netfox
+    - SkeletonView
+    - TTGSnackbar
+
+SPEC CHECKSUMS:
+  Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
+  netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
+  SkeletonView: 2a4536db5ded1b422459a73e05e08b20c6b3a69b
+  TTGSnackbar: fea91c62637b5662f808a4c3b55f7631cb7e1ef7
+
+PODFILE CHECKSUM: d83a820bc6507b25bb9e042ddd4dd77ecbd6c2c1
+
+COCOAPODS: 1.11.3

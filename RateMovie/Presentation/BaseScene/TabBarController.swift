@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Router
 
 class TabBarController: UITabBarController {
   
@@ -22,9 +23,11 @@ class TabBarController: UITabBarController {
   }
   
   func createBaseTabBar() {
+    let mainRouter = DefaultRouter(rootTransition: EmptyTransition())
     self.viewControllers = [
       makeNavigation(viewController: createMovieListTab()),
       makeNavigation(viewController: createMovieFavouritesTab())
+//      makeNavigation(viewController: mainRouter.makeFavoriteTab())
     ]
   }
   
@@ -64,6 +67,11 @@ extension TabBarController {
   
   private func createMovieListTab() -> UIViewController {
     let movieListController = MovieListViewController(nibName: "MovieListViewController", bundle: nil)
+    let router = DefaultRouter(rootTransition: PushTransition())
+    let vm = DefaultMovieListViewModel(router: router)
+    movieListController.viewModel = vm
+    router.root = movieListController
+    
     movieListController.tabBarItem.title = "Movie"
     movieListController.tabBarItem.image = UIImage(systemName: "film")
     movieListController.tabBarItem.selectedImage = UIImage(systemName: "film.fill")
@@ -72,6 +80,11 @@ extension TabBarController {
   
   private func createMovieFavouritesTab() -> UIViewController {
     let movieFavouritesController = MovieFavouritesViewController()
+    let router = DefaultRouter(rootTransition: PushTransition())
+    let vm = DefaultMovieFavouritesViewModel()
+    movieFavouritesController.viewModel = vm
+    router.root = movieFavouritesController
+    
     movieFavouritesController.tabBarItem.title = "Favourite"
     movieFavouritesController.tabBarItem.image = UIImage(systemName: "star")
     movieFavouritesController.tabBarItem.selectedImage = UIImage(systemName: "star.fill")

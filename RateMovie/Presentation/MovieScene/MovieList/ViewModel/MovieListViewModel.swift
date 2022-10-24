@@ -13,6 +13,8 @@ protocol MovieListViewModelInput {
     func getMovieNowPlaying()
     func addMovieToFavorite(which movie: MoviesFavouritesModel)
     func deleteFavorite(with id: Int)
+    
+    func goToDetail(with movieId: Int, data: FavoriteNowPlaying)
 }
 
 protocol MovieListViewModelOutput {
@@ -29,6 +31,7 @@ protocol MovieListViewModelOutput {
 protocol MovieListViewModel: MovieListViewModelInput, MovieListViewModelOutput { }
 
 final class DefaultMovieListViewModel: MovieListViewModel {
+    
     var movieListFilteredTemp: [MovieNowPlayingResponse.Result] = []
     
     var movieListFiltered: [FavoriteNowPlaying] = []
@@ -42,8 +45,17 @@ final class DefaultMovieListViewModel: MovieListViewModel {
     
     //TODO: Domain
     private let movieListUsecase = DefaultFetchMovieUseCase()
-    init() {
+    private let router: Routes
+    
+    typealias Routes = MovieDetailRoute
+    
+    init(router: Routes) {
 //        getMovieNowPlaying()
+        self.router = router
+    }
+    
+    func goToDetail(with movieId: Int, data: FavoriteNowPlaying) {
+        self.router.toDetailMovie(with: movieId, data: data)
     }
     
 }

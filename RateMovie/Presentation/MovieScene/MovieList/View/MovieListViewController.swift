@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Router
 
 class MovieListViewController: UIViewController, RedNavBar {
 
@@ -16,7 +17,10 @@ class MovieListViewController: UIViewController, RedNavBar {
     @IBOutlet weak var collectionView: DefaultCollectionView!
     
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint! //collection harusnya yg punya height bukan viewnya.
-    private var viewModel: MovieListViewModel = DefaultMovieListViewModel()
+//    private var viewModel: MovieListViewModel = DefaultMovieListViewModel()
+    var viewModel: MovieListViewModel?
+//    private var viewModel: MovieListViewModel = DefaultMovieListViewModel(router: DefaultRouter(rootTransition: PushTransition()))
+    
 }
 
 extension MovieListViewController {
@@ -26,7 +30,7 @@ extension MovieListViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBackground()
-        viewModel.getMovieNowPlaying()
+        viewModel?.getMovieNowPlaying()
 //        collectionView.reloadData()
     }
     override func viewDidLoad() {
@@ -72,7 +76,7 @@ extension MovieListViewController {
     }
     
     private func bind() {
-        viewModel.movieList.observe(on: self) { [weak self] moviee in
+        viewModel?.movieList.observe(on: self) { [weak self] moviee in
             guard let self = self else { return }
             self.collectionView.reloadData()
             self.updateCollectionViewHeights()
@@ -88,7 +92,7 @@ extension MovieListViewController {
 
 extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.movieList.value.count
+        return viewModel?.movieList.value.count ?? 0
 //        return viewModel.movieListResultFiltered.value.count
     }
     
@@ -98,36 +102,36 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
         
-        let data = viewModel.movieList.value[indexPath.row]
-        movieCell.movieTitleLabel.text = data.title
-        if let movieRate = data.voteAverage {
+        let data = viewModel?.movieList.value[indexPath.row]
+        movieCell.movieTitleLabel.text = data?.title
+        if let movieRate = data?.voteAverage {
             movieCell.movieRateLabel.text = "⭐ \(String(describing: movieRate))/10"
         }
-        movieCell.movieLanguageLabel.text = data.originalLanguage
-        if let url = data.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
+        movieCell.movieLanguageLabel.text = data?.originalLanguage
+        if let url = data?.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
             movieCell.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
         }
         
-        movieCell.movieFavoriteImageView.image = data.isFavorite! ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
+        movieCell.movieFavoriteImageView.image = (data?.isFavorite!)! ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
 
         
         movieCell.onFavouriteTapped = { [weak self] in
-            let id = data.id
-            let title = data.title
-            let originalLanguage = data.originalLanguage
-            let posterPath = data.posterPath
-            let voteAverage = data.voteAverage
+            let id = data?.id
+            let title = data?.title
+            let originalLanguage = data?.originalLanguage
+            let posterPath = data?.posterPath
+            let voteAverage = data?.voteAverage
             let selectedData = MoviesFavouritesModel(id: id,
                                                    title: title,
                                                    originalLanguage: originalLanguage,
                                                    posterPath: posterPath,
                                                    voteAverage: voteAverage)
-            if let isFavorite = data.isFavorite {
+            if let isFavorite = data?.isFavorite {
                 if isFavorite {
-                    self?.viewModel.deleteFavorite(with: id!)
+                    self?.viewModel?.deleteFavorite(with: id!)
                     movieCell.movieFavoriteImageView.image = UIImage(systemName: "bookmark")
                 } else {
-                    self?.viewModel.addMovieToFavorite(which: selectedData)
+                    self?.viewModel?.addMovieToFavorite(which: selectedData)
                     movieCell.movieFavoriteImageView.image = UIImage(systemName: "bookmark.fill")
                 }
 
@@ -139,15 +143,8 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data = viewModel.movieList.value[indexPath.row]
-        let vc = MovieDetailsViewController()
-        if let movieId = data.id {
-            let vm = DefaultMovieDetailsViewModel(movieId: movieId)
-            vc.viewModel = vm
-        }
-        vc.movieResult = data
-        navigationController?.pushViewController(vc, animated: true)
-        
+        let data = viewModel?.movieList.value[indexPath.row]
+        viewModel?.goToDetail(with: (data?.id)!, data: data!)
     }
     
 }

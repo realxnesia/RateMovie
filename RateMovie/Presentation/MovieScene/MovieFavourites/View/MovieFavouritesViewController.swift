@@ -11,7 +11,8 @@ class MovieFavouritesViewController: UIViewController, RedNavBar {
 
     @IBOutlet weak var tableView: UITableView!
     
-    private var viewModel: MovieFavouritesViewModel = DefaultMovieFavouritesViewModel()
+//    private var viewModel: MovieFavouritesViewModel = DefaultMovieFavouritesViewModel()
+     var viewModel: MovieFavouritesViewModel!
 }
 
 extension MovieFavouritesViewController {
@@ -21,7 +22,7 @@ extension MovieFavouritesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBackground()
-        self.viewModel.getListFavorite()
+        self.viewModel?.getListFavorite()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ extension MovieFavouritesViewController {
     }
     
     private func bind() {
-        viewModel.movieFavouriteList.observe(on: self) { [weak self] movieFavorites in
+        viewModel?.movieFavouriteList.observe(on: self) { [weak self] movieFavorites in
 //            if movieFavorites.count != 0 {
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
@@ -51,7 +52,7 @@ extension MovieFavouritesViewController {
 
 extension MovieFavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.movieFavouriteList.value.count
+        return viewModel?.movieFavouriteList.value.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,18 +60,18 @@ extension MovieFavouritesViewController: UITableViewDelegate, UITableViewDataSou
         else {
             return UITableViewCell()
         }
-        let data = viewModel.movieFavouriteList.value[indexPath.row]
-        movieCell.titleLabel.text = data.title
-        if let movieRate = data.voteAverage {
+        let data = viewModel?.movieFavouriteList.value[indexPath.row]
+        movieCell.titleLabel.text = data?.title
+        if let movieRate = data?.voteAverage {
             movieCell.rateLabel.text = "⭐ " + String(movieRate)
         }
-        if let url = data.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
+        if let url = data?.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
             movieCell.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
         }
         movieCell.onTapFavourite = { [weak self] in
-            guard let movieId = data.id else { return }
+            guard let movieId = data?.id else { return }
             DispatchQueue.main.async {
-                self?.viewModel.deleteFavorite(with: movieId)
+                self?.viewModel?.deleteFavorite(with: movieId)
             }
             
 //            self?.viewModel.getListFavorite()

@@ -1,0 +1,6 @@
+framework module Pods_RateMovie {
+  umbrella header "Pods-RateMovie-umbrella.h"
+
+  export *
+  module * { export * }
+}

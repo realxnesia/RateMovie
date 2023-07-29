@@ -1,0 +1,32 @@
+PODS:
+  - Alamofire (5.6.4)
+  - IQKeyboardManager (6.5.12)
+  - Kingfisher (7.8.1)
+  - netfox (1.21.0)
+  - TTGSnackbar (1.11.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - IQKeyboardManager
+  - Kingfisher
+  - netfox
+  - TTGSnackbar
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - IQKeyboardManager
+    - Kingfisher
+    - netfox
+    - TTGSnackbar
+
+SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
+  Kingfisher: 63f677311d36a3473f6b978584f8a3845d023dc5
+  netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
+  TTGSnackbar: fea91c62637b5662f808a4c3b55f7631cb7e1ef7
+
+PODFILE CHECKSUM: f94f17569395cecd3c80f80ae11a8929e69ffd73
+
+COCOAPODS: 1.11.3

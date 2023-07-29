@@ -48,6 +48,7 @@
 		70F03F9428F03F9600D016C9 /* DefaultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F03F9328F03F9600D016C9 /* DefaultCollectionView.swift */; };
 		9C7DC69F5E4EA9EAE5F840D0 /* Pods_RateMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7CDFF64725C20161682CC3 /* Pods_RateMovie.framework */; };
 		B8C2FD39695B1DFA757BB4C6 /* Pods_RateMovie_RateMovieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883B2DDE25F8F806725F5BAC /* Pods_RateMovie_RateMovieUITests.framework */; };
+		E622D28E2A758ED200A05ACD /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E622D28D2A758ED200A05ACD /* Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		AD7CDFF64725C20161682CC3 /* Pods_RateMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RateMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43E4E68C71B82680C9B34DF /* Pods_RateMovieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RateMovieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E497247C0EC3E441FBAE2F70 /* Pods-RateMovieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RateMovieTests.debug.xcconfig"; path = "Target Support Files/Pods-RateMovieTests/Pods-RateMovieTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E622D28D2A758ED200A05ACD /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,6 +432,7 @@
 		703661C428EF030E0015667B /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				E622D28C2A758EC500A05ACD /* Endpoint */,
 				703661C828EF05540015667B /* BaseRemoteMovies.swift */,
 			);
 			path = Remote;
@@ -500,6 +503,14 @@
 				39908146890B24A44D2CA751 /* Pods-RateMovieTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E622D28C2A758EC500A05ACD /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				E622D28D2A758ED200A05ACD /* Endpoint.swift */,
+			);
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -746,6 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				708CF8EA28F2C9D200FCD6FE /* MoviesFavouriteModel.swift in Sources */,
+				E622D28E2A758ED200A05ACD /* Endpoint.swift in Sources */,
 				7036619228EEF03C0015667B /* RootViewController.swift in Sources */,
 				7036615B28EEEB7B0015667B /* AppDelegate.swift in Sources */,
 				703661A628EEF3E90015667B /* MovieFavouritesViewController.swift in Sources */,

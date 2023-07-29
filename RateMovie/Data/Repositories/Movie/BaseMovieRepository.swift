@@ -19,7 +19,6 @@ protocol BaseMovieRepositoryProtocol {
 }
 
 final class DefaultBaseMoviewRepository: BaseMovieRepositoryProtocol {
-  //TODO: Direct to the Class
   private var remoteData: DefaultBaseRemoteMovies
   private var localData: DefaultBaseLocalMovies
   
@@ -28,7 +27,6 @@ final class DefaultBaseMoviewRepository: BaseMovieRepositoryProtocol {
     self.remoteData = remoteData
     self.localData = localData
   }
-  
 }
 
 //MARK: - Remote

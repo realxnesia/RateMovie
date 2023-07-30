@@ -4,8 +4,6 @@
 //
 //  Created by DHIKA ADITYA ARE on 06/10/22.
 //
-//- GET /movie/now_playing
-//- GET /movie/{movie_id}/similar
 
 import Foundation
 
@@ -30,9 +28,7 @@ protocol MovieListViewModel: MovieListViewModelInput, MovieListViewModelOutput {
 
 final class DefaultMovieListViewModel: MovieListViewModel {
     var movieListFilteredTemp: [MovieNowPlayingResponse.Result] = []
-    
     var movieListFiltered: [FavoriteNowPlaying] = []
-    
     var movieListResultFiltered: Observable<[FavoriteNowPlaying]> = Observable([])
     
     let isLoading: Observable<Bool> = Observable(false)
@@ -40,12 +36,9 @@ final class DefaultMovieListViewModel: MovieListViewModel {
     let movieList: Observable<[FavoriteNowPlaying]> = Observable([])
     let isFavorite: Observable<Bool> = Observable(false)
     
-    //TODO: Domain
+    // MARK: Domain
     private let movieListUsecase = DefaultFetchMovieUseCase()
-    init() {
-//        getMovieNowPlaying()
-    }
-    
+    init() { }
 }
 
 extension DefaultMovieListViewModel {
@@ -90,21 +83,23 @@ extension DefaultMovieListViewModel {
         
     private func convertData(with movies: [MovieNowPlayingResponse.Result], isFavorite: Bool) -> [FavoriteNowPlaying] {
         return movies.compactMap {
-            FavoriteNowPlaying(isFavorite: isFavorite,
-                               posterPath: $0.posterPath,
-                              adult: $0.adult,
-                              overview: $0.overview,
-                              releaseDate: $0.releaseDate,
-                              genreIDS: $0.genreIDS,
-                              id: $0.id,
-                              originalTitle: $0.originalTitle,
-                              originalLanguage: $0.originalLanguage,
-                              title: $0.title,
-                              backdropPath: $0.backdropPath,
-                              popularity: $0.popularity,
-                              voteCount: $0.voteCount,
-                              video: $0.video,
-                              voteAverage: $0.voteAverage)
+            FavoriteNowPlaying(
+                isFavorite: isFavorite,
+                posterPath: $0.posterPath,
+                adult: $0.adult,
+                overview: $0.overview,
+                releaseDate: $0.releaseDate,
+                genreIDS: $0.genreIDS,
+                id: $0.id,
+                originalTitle: $0.originalTitle,
+                originalLanguage: $0.originalLanguage,
+                title: $0.title,
+                backdropPath: $0.backdropPath,
+                popularity: $0.popularity,
+                voteCount: $0.voteCount,
+                video: $0.video,
+                voteAverage: $0.voteAverage
+            )
         }
     }
     
@@ -112,17 +107,14 @@ extension DefaultMovieListViewModel {
 
 extension DefaultMovieListViewModel {
     func addMovieToFavorite(which movie: MoviesFavouritesModel) {
-        print("Add to fav: \(movie)")
         movieListUsecase.addMovieToFavourites(which: movie)
         self.getMovieNowPlaying()
     }
     
     func deleteFavorite(with id: Int) {
-        print("ini movie yg dihapus id: \(id)")
         DispatchQueue.main.async {
             self.movieListUsecase.deleteFavorite(with: id)
             self.getMovieNowPlaying()
         }
-
     }
 }

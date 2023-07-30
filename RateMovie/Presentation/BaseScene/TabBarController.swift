@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class TabBarController: UITabBarController {
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
@@ -18,7 +17,7 @@ class TabBarController: UITabBarController {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    //TODO: OnBoarding
+    // TODO: Onboarding if Any
   }
   
   func createBaseTabBar() {
@@ -40,11 +39,16 @@ class TabBarController: UITabBarController {
   }
   
   func moveToFavoritesController(){
-    let vc = RootViewController(rootViewController: MovieFavouritesViewController())
-    self.navigationController?.pushViewController(vc, animated: true)
+    let controller = MovieFavouritesViewController()
+    controller.viewModel = DefaultMovieFavouritesViewModel(
+      useCase: DefaultMovieFavoritesUseCase()
+    )
+    let navigation = RootViewController(
+      rootViewController: controller
+    )
+    self.navigationController?.pushViewController(navigation, animated: true)
     self.selectedIndex = 2
   }
-  
 }
 
 extension TabBarController {
@@ -63,7 +67,9 @@ extension TabBarController {
   }
   
   private func createMovieListTab() -> UIViewController {
-    let movieListController = MovieListViewController(nibName: "MovieListViewController", bundle: nil)
+    let movieListController = MovieListViewController(
+      nibName: "MovieListViewController", bundle: nil
+    )
     movieListController.tabBarItem.title = "Movie"
     movieListController.tabBarItem.image = UIImage(systemName: "film")
     movieListController.tabBarItem.selectedImage = UIImage(systemName: "film.fill")
@@ -72,6 +78,9 @@ extension TabBarController {
   
   private func createMovieFavouritesTab() -> UIViewController {
     let movieFavouritesController = MovieFavouritesViewController()
+    movieFavouritesController.viewModel = DefaultMovieFavouritesViewModel(
+      useCase: DefaultMovieFavoritesUseCase()
+    )
     movieFavouritesController.tabBarItem.title = "Favourite"
     movieFavouritesController.tabBarItem.image = UIImage(systemName: "star")
     movieFavouritesController.tabBarItem.selectedImage = UIImage(systemName: "star.fill")

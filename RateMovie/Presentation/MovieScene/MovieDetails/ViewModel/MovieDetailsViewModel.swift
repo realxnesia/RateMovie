@@ -8,14 +8,15 @@
 import Foundation
 
 protocol MovieDetailsViewModelInput {
-    func getMovieIdSimilar(with movieId: Int)
-    func getMovieSelectedFavorite(with movieId: Int)
+    func didLoad()
+    func getMovieId() -> Int
+    func getMovieResult() -> FavoriteNowPlaying
 }
 
 protocol MovieDetailsViewModelOutput {
-    var errorMessage: Observable<String> { get }
     var movieSimilar: Observable<[MovieIdSimilarResponse.Result]> { get }
     var isFavorite: Observable<Bool> { get }
+    var errorMessage: Observable<String> { get }
 }
 
 protocol MovieDetailsViewModel: MovieDetailsViewModelInput, MovieDetailsViewModelOutput { }
@@ -27,21 +28,41 @@ final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
     var isFavorite: Observable<Bool> = Observable(false)
     
     private let movieSimilarUseCase = DefaultFetchMovieSimilarUseCase()
+    private var movieId: Int
+    var movieResult: FavoriteNowPlaying
     
-    init(movieId: Int) {
-        self.getMovieIdSimilar(with: movieId)
-        self.getMovieSelectedFavorite(with: movieId)
+    init(
+        movieId: Int,
+        movieResult: FavoriteNowPlaying
+    ) {
+        self.movieId = movieId
+        self.movieResult = movieResult
     }
 }
 
 extension DefaultMovieDetailsViewModel {
-    func getMovieIdSimilar(with movieId: Int) {
+    func didLoad() {
+        getMovieIdSimilar(with: movieId)
+        getMovieSelectedFavorite(with: movieId)
+    }
+    
+    func getMovieId() -> Int {
+        return self.movieId
+    }
+    
+    func getMovieResult() -> FavoriteNowPlaying {
+        return self.movieResult
+    }
+}
+
+extension DefaultMovieDetailsViewModel {
+    private func getMovieIdSimilar(with movieId: Int) {
         movieSimilarUseCase.getSimilarMovieUC(with: movieId) { [weak self] data in
             self?.movieSimilar.value = data
         }
     }
     
-    func getMovieSelectedFavorite(with movieId: Int) {
+    private func getMovieSelectedFavorite(with movieId: Int) {
         movieSimilarUseCase.getMovieSelectedFavorite(with: movieId) { isFav in
             self.isFavorite.value = isFav
         }

@@ -10,30 +10,25 @@ import Foundation
 protocol MovieFavouritesViewModelInput {
     func getListFavorite()
     func deleteFavorite(with id: Int)
-//    func getMovieSelectedFavorite(with movieId: Int)
 }
 
 protocol MovieFavouritesViewModelOutput {
-    var errorMessage: Observable<String> { get }
-    var movieFavouriteList: Observable<[MoviesFavouritesModel]> { get }
+    var movieFavouriteList: Observable<[MoviesFavouritesModel]?> { get }
+    var errorMessage: Observable<String?> { get }
 }
 
 protocol MovieFavouritesViewModel: MovieFavouritesViewModelInput, MovieFavouritesViewModelOutput { }
 
 final class DefaultMovieFavouritesViewModel: MovieFavouritesViewModel {
-//    func getMovieSelectedFavorite(with movieId: Int) {
-//        useCaseFavorite.getMovieSelectedFavorite(with: movieId, <#T##completion: (Bool) -> Void##(Bool) -> Void#>)
-//    }
+    let movieFavouriteList: Observable<[MoviesFavouritesModel]?> = Observable(nil)
+    let errorMessage: Observable<String?> = Observable(nil)
     
-    let errorMessage: Observable<String> = Observable("")
-    let movieFavouriteList: Observable<[MoviesFavouritesModel]> = Observable([])
+//    private let useCaseFavorite = DefaultMovieFavoritesUseCase()
+    private var useCaseFavorite: MovieFavoritesUseCaseProtocol
     
-    private let useCaseFavorite = DefaultMovieFavoritesUseCase()
-    
-    init() {
-//        getListFavorite()
+    init(useCase: MovieFavoritesUseCaseProtocol) {
+        self.useCaseFavorite = useCase
     }
-    
 }
 
 extension DefaultMovieFavouritesViewModel {

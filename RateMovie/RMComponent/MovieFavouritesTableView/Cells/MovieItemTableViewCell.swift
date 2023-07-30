@@ -10,9 +10,7 @@ import UIKit
 class MovieItemTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var customContentView: UIView!
-    
     @IBOutlet weak var moviePreviewImageView: UIImageView!
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var favoriteImageView: UIImageView!

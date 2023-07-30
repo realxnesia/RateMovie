@@ -18,19 +18,21 @@ protocol BaseMovieRepositoryProtocol {
   func deleteMoviesFavourite(with id: Int)
 }
 
-final class DefaultBaseMoviewRepository: BaseMovieRepositoryProtocol {
-  private var remoteData: DefaultBaseRemoteMovies
-  private var localData: DefaultBaseLocalMovies
+final class DefaultBaseMovieRepository: BaseMovieRepositoryProtocol {
+  private var remoteData: BaseRemoteMovies
+  private var localData: BaseLocalMoviesProtocol
   
-  init(remoteData: DefaultBaseRemoteMovies = DefaultBaseRemoteMovies(),
-       localData: DefaultBaseLocalMovies = DefaultBaseLocalMovies()) {
+  init(
+    remoteData: BaseRemoteMovies,
+    localData: BaseLocalMoviesProtocol
+  ) {
     self.remoteData = remoteData
     self.localData = localData
   }
 }
 
 //MARK: - Remote
-extension DefaultBaseMoviewRepository {
+extension DefaultBaseMovieRepository {
   func getMoviesNowPlaying(_ completion: @escaping ([MovieNowPlayingResponse.Result]) -> Void) {
     remoteData.getMoviewNowPlaying { data in
       completion(data)
@@ -51,7 +53,7 @@ extension DefaultBaseMoviewRepository {
 }
 
 //MARK: - Local
-extension DefaultBaseMoviewRepository {
+extension DefaultBaseMovieRepository {
   func getMoviesFavouriteLocaly(_ completion: @escaping ([MoviesFavouritesModel]) -> Void) {
     localData.getAllFavouriteMovie { data in
       completion(data)

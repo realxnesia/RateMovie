@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (5.6.4)
+  - Alamofire (5.7.1)
   - IQKeyboardManager (6.5.12)
-  - Kingfisher (7.8.1)
+  - Kingfisher (7.9.0)
   - netfox (1.21.0)
   - TTGSnackbar (1.11.1)
 
@@ -21,12 +21,12 @@ SPEC REPOS:
     - TTGSnackbar
 
 SPEC CHECKSUMS:
-  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
-  Kingfisher: 63f677311d36a3473f6b978584f8a3845d023dc5
+  Kingfisher: 59f908b6d2f403b0a3e539debb0eec05cb27002c
   netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
   TTGSnackbar: fea91c62637b5662f808a4c3b55f7631cb7e1ef7
 
-PODFILE CHECKSUM: f94f17569395cecd3c80f80ae11a8929e69ffd73
+PODFILE CHECKSUM: 9658ab771dc71ab0acc1d33e42f35fbc81537454
 
 COCOAPODS: 1.11.3

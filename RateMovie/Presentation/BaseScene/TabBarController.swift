@@ -41,7 +41,12 @@ class TabBarController: UITabBarController {
   func moveToFavoritesController(){
     let controller = MovieFavouritesViewController()
     controller.viewModel = DefaultMovieFavouritesViewModel(
-      useCase: DefaultMovieFavoritesUseCase()
+      useCase: DefaultMovieFavoritesUseCase(
+        repository: DefaultBaseMovieRepository(
+          remoteData: DefaultBaseRemoteMovies(),
+          localData: DefaultBaseLocalMovies()
+        )
+      )
     )
     let navigation = RootViewController(
       rootViewController: controller
@@ -70,6 +75,14 @@ extension TabBarController {
     let movieListController = MovieListViewController(
       nibName: "MovieListViewController", bundle: nil
     )
+    movieListController.viewModel = DefaultMovieListViewModel(
+      useCase: DefaultFetchMovieUseCase(
+        repository: DefaultBaseMovieRepository(
+          remoteData: DefaultBaseRemoteMovies(),
+          localData: DefaultBaseLocalMovies()
+        )
+      )
+    )
     movieListController.tabBarItem.title = "Movie"
     movieListController.tabBarItem.image = UIImage(systemName: "film")
     movieListController.tabBarItem.selectedImage = UIImage(systemName: "film.fill")
@@ -79,7 +92,12 @@ extension TabBarController {
   private func createMovieFavouritesTab() -> UIViewController {
     let movieFavouritesController = MovieFavouritesViewController()
     movieFavouritesController.viewModel = DefaultMovieFavouritesViewModel(
-      useCase: DefaultMovieFavoritesUseCase()
+      useCase: DefaultMovieFavoritesUseCase(
+        repository: DefaultBaseMovieRepository(
+          remoteData: DefaultBaseRemoteMovies(),
+          localData: DefaultBaseLocalMovies()
+        )
+      )
     )
     movieFavouritesController.tabBarItem.title = "Favourite"
     movieFavouritesController.tabBarItem.image = UIImage(systemName: "star")

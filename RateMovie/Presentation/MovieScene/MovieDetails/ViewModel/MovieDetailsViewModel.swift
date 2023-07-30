@@ -27,16 +27,18 @@ final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
     var errorMessage: Observable<String> = Observable("")
     var isFavorite: Observable<Bool> = Observable(false)
     
-    private let movieSimilarUseCase = DefaultFetchMovieSimilarUseCase()
     private var movieId: Int
     var movieResult: FavoriteNowPlaying
+    private let movieSimilarUseCase: FetchMovieIdSimilarProtocol
     
     init(
         movieId: Int,
-        movieResult: FavoriteNowPlaying
+        movieResult: FavoriteNowPlaying,
+        useCase: FetchMovieIdSimilarProtocol
     ) {
         self.movieId = movieId
         self.movieResult = movieResult
+        self.movieSimilarUseCase = useCase
     }
 }
 

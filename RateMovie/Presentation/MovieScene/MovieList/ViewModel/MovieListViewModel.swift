@@ -37,8 +37,11 @@ final class DefaultMovieListViewModel: MovieListViewModel {
     let isFavorite: Observable<Bool> = Observable(false)
     
     // MARK: Domain
-    private let movieListUsecase = DefaultFetchMovieUseCase()
-    init() { }
+    private var movieListUsecase: FetchMovieProtocolUseCase
+    
+    init(useCase: FetchMovieProtocolUseCase) {
+        self.movieListUsecase = useCase
+    }
 }
 
 extension DefaultMovieListViewModel {
@@ -49,7 +52,6 @@ extension DefaultMovieListViewModel {
             self.movieListFiltered.removeAll()
             self.filteredMovies(with: ress)
         }
-        
     }
     
     private func filteredMovies(with response: [MovieNowPlayingResponse.Result]) {

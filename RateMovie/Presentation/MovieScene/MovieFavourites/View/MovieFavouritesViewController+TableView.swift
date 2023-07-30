@@ -13,7 +13,7 @@ extension MovieFavouritesViewController: UITableViewDelegate, UITableViewDataSou
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return viewModel.movieFavouriteList.value?.count ?? 0
+        return viewModel?.movieFavouriteList.value?.count ?? 0
     }
     
     func tableView(
@@ -26,7 +26,7 @@ extension MovieFavouritesViewController: UITableViewDelegate, UITableViewDataSou
                 for: indexPath
             ) as? MovieItemTableViewCell
         else { return UITableViewCell() }
-        let data = viewModel.movieFavouriteList.value?[indexPath.row]
+        let data = viewModel?.movieFavouriteList.value?[indexPath.row]
         movieCell.titleLabel.text = data?.title
         if let movieRate = data?.voteAverage {
             movieCell.rateLabel.text = "⭐ " + String(movieRate)

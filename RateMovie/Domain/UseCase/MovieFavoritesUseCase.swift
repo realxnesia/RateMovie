@@ -8,16 +8,16 @@
 import Foundation
 
 protocol MovieFavoritesUseCaseProtocol {
-    mutating func getListFavorite(_ completion: @escaping([MoviesFavouritesModel]) -> Void)
-    mutating func deleteFavorite(with id: Int)
-    mutating func getMovieSelectedFavorite(with movieId: Int, _ completion: @escaping(Bool) -> Void)
+    func getListFavorite(_ completion: @escaping([MoviesFavouritesModel]) -> Void)
+    func deleteFavorite(with id: Int)
+    func getMovieSelectedFavorite(with movieId: Int, _ completion: @escaping(Bool) -> Void)
 }
 
 final class DefaultMovieFavoritesUseCase: MovieFavoritesUseCaseProtocol {
     private var repository: BaseMovieRepositoryProtocol
     
-    init() {
-        self.repository = DefaultBaseMoviewRepository()
+    init(repository: BaseMovieRepositoryProtocol) {
+        self.repository = repository
     }
     
     func getListFavorite(_ completion: @escaping ([MoviesFavouritesModel]) -> Void) {

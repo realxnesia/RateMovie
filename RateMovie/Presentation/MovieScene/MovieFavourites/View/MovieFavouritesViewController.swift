@@ -9,7 +9,7 @@ import UIKit
 
 class MovieFavouritesViewController: UIViewController, RedNavBar {
     @IBOutlet weak var tableView: UITableView!
-    var viewModel: MovieFavouritesViewModel!
+    var viewModel: MovieFavouritesViewModel?
 }
 
 extension MovieFavouritesViewController {
@@ -19,7 +19,7 @@ extension MovieFavouritesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBackground()
-        self.viewModel.getListFavorite()
+        viewModel?.getListFavorite()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +33,14 @@ extension MovieFavouritesViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(MovieItemTableViewCell.nib(), forCellReuseIdentifier: MovieItemTableViewCell.identifier)
+        tableView.register(
+            MovieItemTableViewCell.nib(),
+            forCellReuseIdentifier: MovieItemTableViewCell.identifier
+        )
     }
     
     private func bind() {
-        viewModel.movieFavouriteList.observe(on: self) { [weak self] movieFavorites in
-            guard let movieFavorites else { return }
+        viewModel?.movieFavouriteList.observe(on: self) { [weak self] movieFavorites in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -47,7 +49,8 @@ extension MovieFavouritesViewController {
     
     internal func triggerOnTapUnfavourite(movieId: Int) {
         DispatchQueue.main.async {
-            self.viewModel.deleteFavorite(with: movieId)
+            self.viewModel?.deleteFavorite(with: movieId)
+            self.viewModel?.getListFavorite()
         }
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import TTGSnackbar
 
 extension UIViewController {
-    func gotoRootViewController(){
+    func gotoRootViewController() {
         guard let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         guard let firstWindow = firstScene.windows.first else { return }
         
@@ -34,13 +34,22 @@ extension UIViewController {
         firstWindow.makeKeyAndVisible()
     }
     
-    func gotoHistoryListTransactionViewController(){
+    func gotoHistoryListTransactionViewController() {
         guard
             let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
             let firstWindow = firstScene.windows.first
         else { return }
+        let controller = MovieListViewController()
+        controller.viewModel = DefaultMovieListViewModel(
+            useCase: DefaultFetchMovieUseCase(
+                repository: DefaultBaseMovieRepository(
+                    remoteData: DefaultBaseRemoteMovies(),
+                    localData: DefaultBaseLocalMovies()
+                )
+            )
+        )
         let rootController = RootViewController(
-            rootViewController: MovieListViewController()
+            rootViewController: controller
         )
         let snapshot = firstWindow.snapshotView(afterScreenUpdates: true)!
         rootController.view.addSubview(snapshot)

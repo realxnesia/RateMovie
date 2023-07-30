@@ -23,8 +23,7 @@ final class DefaultMovieFavouritesViewModel: MovieFavouritesViewModel {
     let movieFavouriteList: Observable<[MoviesFavouritesModel]?> = Observable(nil)
     let errorMessage: Observable<String?> = Observable(nil)
     
-//    private let useCaseFavorite = DefaultMovieFavoritesUseCase()
-    private var useCaseFavorite: MovieFavoritesUseCaseProtocol
+    private let useCaseFavorite: MovieFavoritesUseCaseProtocol
     
     init(useCase: MovieFavoritesUseCaseProtocol) {
         self.useCaseFavorite = useCase
@@ -43,7 +42,7 @@ extension DefaultMovieFavouritesViewModel {
         print("ini movie yg dihapus id: \(id)")
         DispatchQueue.main.async {
             self.useCaseFavorite.deleteFavorite(with: id)
-            self.getListFavorite()
+//            self.getListFavorite()
         }
 
     }

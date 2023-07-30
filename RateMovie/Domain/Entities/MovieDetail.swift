@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 // MARK: - Welcome
 struct MovieDetail: Codable {
     let adult: Bool?
@@ -90,5 +88,4 @@ struct MovieDetail: Codable {
             case name
         }
     }
-
 }

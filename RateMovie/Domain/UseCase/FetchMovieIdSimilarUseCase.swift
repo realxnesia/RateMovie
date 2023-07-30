@@ -8,15 +8,15 @@
 import Foundation
 
 protocol FetchMovieIdSimilarProtocol {
-    mutating func getSimilarMovieUC(with movieId: Int, completion: @escaping ([MovieIdSimilarResponse.Result]) -> Void)
-    mutating func getMovieSelectedFavorite(with id: Int, completion: @escaping(Bool) -> Void)
+    func getSimilarMovieUC(with movieId: Int, completion: @escaping ([MovieIdSimilarResponse.Result]) -> Void)
+    func getMovieSelectedFavorite(with id: Int, completion: @escaping(Bool) -> Void)
 }
 
 final class DefaultFetchMovieSimilarUseCase: FetchMovieIdSimilarProtocol {
     private var repository: BaseMovieRepositoryProtocol
     
-    init() {
-        self.repository = DefaultBaseMoviewRepository()
+    init(repository: BaseMovieRepositoryProtocol) {
+        self.repository = repository
     }
 }
 

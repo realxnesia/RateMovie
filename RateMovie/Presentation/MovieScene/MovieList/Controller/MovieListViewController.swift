@@ -9,12 +9,10 @@ import UIKit
 import Kingfisher
 
 class MovieListViewController: UIViewController, RedNavBar {
-    private var movieResult: [MovieNowPlayingResponse.Result]?
-    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var collectionView: DefaultCollectionView!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
-    var viewModel: MovieListViewModel = DefaultMovieListViewModel()
+    var viewModel: MovieListViewModel?
 }
 
 extension MovieListViewController {
@@ -24,7 +22,7 @@ extension MovieListViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBackground()
-        viewModel.getMovieNowPlaying()
+        viewModel?.getMovieNowPlaying()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +69,7 @@ extension MovieListViewController {
     }
     
     private func bind() {
-        viewModel.movieList.observe(on: self) { [weak self] moviee in
+        viewModel?.movieList.observe(on: self) { [weak self] moviee in
             guard let self = self else { return }
             self.collectionView.reloadData()
             self.updateCollectionViewHeights()

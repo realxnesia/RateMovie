@@ -50,7 +50,6 @@ extension MovieFavouritesViewController {
     internal func triggerOnTapUnfavourite(movieId: Int) {
         DispatchQueue.main.async {
             self.viewModel?.deleteFavorite(with: movieId)
-            self.viewModel?.getListFavorite()
         }
     }
 }

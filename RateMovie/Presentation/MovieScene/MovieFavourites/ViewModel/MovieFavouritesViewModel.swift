@@ -42,8 +42,10 @@ extension DefaultMovieFavouritesViewModel {
         print("ini movie yg dihapus id: \(id)")
         DispatchQueue.main.async {
             self.useCaseFavorite.deleteFavorite(with: id)
-//            self.getListFavorite()
         }
-
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.getListFavorite()
+        }
     }
 }

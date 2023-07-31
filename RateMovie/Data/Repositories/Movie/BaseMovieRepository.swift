@@ -20,11 +20,11 @@ protocol BaseMovieRepositoryProtocol {
 
 final class DefaultBaseMovieRepository: BaseMovieRepositoryProtocol {
   private var remoteData: BaseRemoteMovies
-  private var localData: BaseLocalMoviesProtocol
+  private var localData: LocalMovieRepository
   
   init(
     remoteData: BaseRemoteMovies,
-    localData: BaseLocalMoviesProtocol
+    localData: LocalMovieRepository
   ) {
     self.remoteData = remoteData
     self.localData = localData

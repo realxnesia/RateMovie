@@ -83,7 +83,7 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
                 useCase: DefaultFetchMovieSimilarUseCase(
                     repository: DefaultBaseMovieRepository(
                         remoteData: DefaultBaseRemoteMovies(),
-                        localData: DefaultBaseLocalMovies()
+                        localData: CoreDataMovieDataStorage()
                     )
                 )
             )

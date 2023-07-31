@@ -44,7 +44,7 @@ extension UIViewController {
             useCase: DefaultFetchMovieUseCase(
                 repository: DefaultBaseMovieRepository(
                     remoteData: DefaultBaseRemoteMovies(),
-                    localData: DefaultBaseLocalMovies()
+                    localData: CoreDataMovieDataStorage()
                 )
             )
         )

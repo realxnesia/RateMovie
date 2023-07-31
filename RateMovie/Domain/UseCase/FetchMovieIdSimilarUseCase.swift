@@ -8,8 +8,14 @@
 import Foundation
 
 protocol FetchMovieIdSimilarProtocol {
-    func getSimilarMovieUC(with movieId: Int, completion: @escaping ([MovieIdSimilarResponse.Result]) -> Void)
-    func getMovieSelectedFavorite(with id: Int, completion: @escaping(Bool) -> Void)
+    func getSimilarMovieUC(
+        with movieId: Int,
+        completion: @escaping ([MovieIdSimilarResponse.Result]) -> Void
+    )
+    func getMovieSelectedFavorite(
+        with id: Int,
+        completion: @escaping(Bool) -> Void
+    )
 }
 
 final class DefaultFetchMovieSimilarUseCase: FetchMovieIdSimilarProtocol {

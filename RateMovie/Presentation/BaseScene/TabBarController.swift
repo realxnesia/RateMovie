@@ -44,7 +44,7 @@ class TabBarController: UITabBarController {
       useCase: DefaultMovieFavoritesUseCase(
         repository: DefaultBaseMovieRepository(
           remoteData: DefaultBaseRemoteMovies(),
-          localData: DefaultBaseLocalMovies()
+          localData: CoreDataMovieDataStorage()
         )
       )
     )
@@ -79,7 +79,7 @@ extension TabBarController {
       useCase: DefaultFetchMovieUseCase(
         repository: DefaultBaseMovieRepository(
           remoteData: DefaultBaseRemoteMovies(),
-          localData: DefaultBaseLocalMovies()
+          localData: CoreDataMovieDataStorage()
         )
       )
     )
@@ -95,7 +95,7 @@ extension TabBarController {
       useCase: DefaultMovieFavoritesUseCase(
         repository: DefaultBaseMovieRepository(
           remoteData: DefaultBaseRemoteMovies(),
-          localData: DefaultBaseLocalMovies()
+          localData: CoreDataMovieDataStorage()
         )
       )
     )

@@ -8,10 +8,17 @@
 import Foundation
 
 protocol FetchMovieProtocolUseCase {
-    func getMovieNowPlayingUC(_ completion: @escaping ([MovieNowPlayingResponse.Result]) -> Void)
+    func getMovieNowPlayingUC(
+        _ completion: @escaping ([MovieNowPlayingResponse.Result]) -> Void
+    )
     func addMovieToFavourites(which movie: MoviesFavouritesModel)
-    func getMovieSelectedFavorite(with id: Int, completion: @escaping(Bool) -> Void)
-    func getMoviesFavorite(_ completion: @escaping(_ data: [MoviesFavouritesModel]) -> Void)
+    func getMovieSelectedFavorite(
+        with id: Int,
+        completion: @escaping(Bool) -> Void
+    )
+    func getMoviesFavorite(
+        _ completion: @escaping(_ data: [MoviesFavouritesModel]) -> Void
+    )
     func deleteFavorite(with id: Int)
 }
 

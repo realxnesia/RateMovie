@@ -8,9 +8,14 @@
 import Foundation
 
 protocol MovieFavoritesUseCaseProtocol {
-    func getListFavorite(_ completion: @escaping([MoviesFavouritesModel]) -> Void)
+    func getListFavorite(
+        _ completion: @escaping([MoviesFavouritesModel]) -> Void
+    )
     func deleteFavorite(with id: Int)
-    func getMovieSelectedFavorite(with movieId: Int, _ completion: @escaping(Bool) -> Void)
+    func getMovieSelectedFavorite(
+        with movieId: Int,
+        _ completion: @escaping(Bool) -> Void
+    )
 }
 
 final class DefaultMovieFavoritesUseCase: MovieFavoritesUseCaseProtocol {

@@ -4,6 +4,7 @@ PODS:
   - Kingfisher (7.9.0)
   - netfox (1.21.0)
   - RMComponents (0.1.0)
+  - RMComponents/Tests (0.1.0)
   - TTGSnackbar (1.11.1)
 
 DEPENDENCIES:
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - Kingfisher
   - netfox
   - RMComponents (from `RMPods/RMComponents`)
+  - RMComponents/Tests (from `RMPods/RMComponents`)
   - TTGSnackbar
 
 SPEC REPOS:
@@ -31,9 +33,9 @@ SPEC CHECKSUMS:
   IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
   Kingfisher: 59f908b6d2f403b0a3e539debb0eec05cb27002c
   netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
-  RMComponents: 740064b13dd0718f79bc51e2ed53e860da2b2017
+  RMComponents: ff4bd1a96abaf2a13ecd0fc22a4407cd84691a7a
   TTGSnackbar: fea91c62637b5662f808a4c3b55f7631cb7e1ef7
 
-PODFILE CHECKSUM: 3979b99cad462e4ada67122aba661fd0bb5466e9
+PODFILE CHECKSUM: 15d239141c97339d6a4b83fddca7eac98e676e89
 
 COCOAPODS: 1.11.3

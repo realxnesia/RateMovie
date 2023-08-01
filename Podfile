@@ -5,7 +5,9 @@ workspace 'RateMovie.xcworkspace'
 project 'RateMovie.xcodeproj'
 
 def rmcomponents_pod
-  pod 'RMComponents', :path => 'RMPods/RMComponents'
+  pod 'RMComponents',
+      :path => 'RMPods/RMComponents',
+      :testspecs => ['Tests']
 end
 
 def development_pods

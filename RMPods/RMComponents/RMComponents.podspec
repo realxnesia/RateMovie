@@ -33,6 +33,10 @@ TODO: Add long description of the pod here.
   s.source_files = 'RMComponents/Module/**/*.{swift}'
   s.resource = "RMComponents/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodelid}"
   
+  s.test_spec 'Tests' do |test_spec|
+    test_spec.source_files = 'RMComponents/Tests/**/*{.swift}'
+  end
+  
   # s.resource_bundles = {
   #   'RMComponents' => ['RMComponents/Assets/*.png']
   # }

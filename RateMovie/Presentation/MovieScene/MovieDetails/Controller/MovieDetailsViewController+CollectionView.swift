@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import RMComponents
 
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(

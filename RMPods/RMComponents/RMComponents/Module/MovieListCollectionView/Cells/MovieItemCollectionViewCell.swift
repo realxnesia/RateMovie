@@ -7,30 +7,33 @@
 
 import UIKit
 
-class MovieItemCollectionViewCell: UICollectionViewCell {
+public class MovieItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var favoriteView: UIView!
-    @IBOutlet weak var moviePreviewImageView: UIImageView!
-    @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var movieRateLabel: UILabel!
-    @IBOutlet weak var movieLanguageLabel: UILabel!
-    @IBOutlet weak var movieFavoriteImageView: UIImageView!
+    @IBOutlet public weak var favoriteView: UIView!
+    @IBOutlet public weak var moviePreviewImageView: UIImageView!
+    @IBOutlet public weak var movieTitleLabel: UILabel!
+    @IBOutlet public weak var movieRateLabel: UILabel!
+    @IBOutlet public weak var movieLanguageLabel: UILabel!
+    @IBOutlet public weak var movieFavoriteImageView: UIImageView!
     
-    var onFavouriteTapped: (() -> Void)?
+    public var onFavouriteTapped: (() -> Void)?
     
-    static let identifier = "MovieItemCollectionViewCell"
-    static func nib() -> UINib {
-        UINib(nibName: identifier, bundle: nil)
+    public static let identifier = "MovieItemCollectionViewCell"
+    public static func nib() -> UINib {
+        UINib(
+            nibName: identifier,
+            bundle: Bundle(for: Self.self)
+        )
     }
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         moviePreviewImageView.contentMode = .scaleAspectFit
         setupGesture()
         setupShadow()
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    public override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
         layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
         return layoutAttributes

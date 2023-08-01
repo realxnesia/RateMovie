@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RMComponents
 
 class MovieFavouritesViewController: UIViewController, RedNavBar {
     @IBOutlet weak var tableView: UITableView!

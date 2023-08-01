@@ -2,12 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:RateMovie.xcodeproj">
+      location = "group:RMComponents.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:RMPods/RMComponents/Example/RMComponents.xcodeproj">
    </FileRef>
 </Workspace>

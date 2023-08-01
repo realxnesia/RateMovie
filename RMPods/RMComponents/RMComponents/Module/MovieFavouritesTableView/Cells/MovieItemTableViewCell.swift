@@ -7,29 +7,32 @@
 
 import UIKit
 
-class MovieItemTableViewCell: UITableViewCell {
+public class MovieItemTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var customContentView: UIView!
-    @IBOutlet weak var moviePreviewImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var rateLabel: UILabel!
+    @IBOutlet public weak var moviePreviewImageView: UIImageView!
+    @IBOutlet public weak var titleLabel: UILabel!
+    @IBOutlet public weak var rateLabel: UILabel!
     @IBOutlet weak var favoriteImageView: UIImageView!
     
-    var onTapFavourite: (() -> Void)?
-    
-    static let identifier = "MovieItemTableViewCell"
-    static func nib() -> UINib {
-        UINib(nibName: identifier, bundle: nil)
+    public var onTapFavourite: (() -> Void)?
+     
+    public static let identifier = "MovieItemTableViewCell"
+    public static func nib() -> UINib {
+        UINib(
+            nibName: identifier,
+            bundle: Bundle(for: Self.self)
+        )
     }
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         moviePreviewImageView.contentMode = .scaleAspectFit
         setupShadow()
         setupGesture()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    public override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     

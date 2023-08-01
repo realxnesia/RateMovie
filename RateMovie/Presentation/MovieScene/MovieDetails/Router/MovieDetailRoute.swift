@@ -15,14 +15,11 @@ protocol MovieDetailRoute {
 
 extension MovieDetailRoute where Self: Router {
     func toDetailMovie(with transition: Transition, movieId: Int, data: FavoriteNowPlaying) {
-        let router = DefaultRouter(rootTransition: transition)
         let vc = MovieDetailsViewController()
         let vm = DefaultMovieDetailsViewModel(movieId: movieId)
         vc.viewModel = vm
         vc.movieResult = data
         vc.hidesBottomBarWhenPushed = true
-//        router.root = vc
-        print("============adsfas")
         route(to: vc, as: transition)
     }
     

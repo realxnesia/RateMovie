@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C768C86B40454FB6973E613 /* Pods_RateMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD932C995D0774F4E35A31FB /* Pods_RateMovie.framework */; };
 		7036615B28EEEB7B0015667B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7036615A28EEEB7B0015667B /* AppDelegate.swift */; };
 		7036615D28EEEB7B0015667B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7036615C28EEEB7B0015667B /* SceneDelegate.swift */; };
 		7036616528EEEB7B0015667B /* RateMovie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7036616328EEEB7B0015667B /* RateMovie.xcdatamodeld */; };
@@ -50,7 +51,6 @@
 		70F03F9028F01A6F00D016C9 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F03F8F28F01A6F00D016C9 /* MovieDetail.swift */; };
 		70F03F9228F01DEB00D016C9 /* BaseMovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F03F9128F01DEB00D016C9 /* BaseMovieRepository.swift */; };
 		70F03F9428F03F9600D016C9 /* DefaultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F03F9328F03F9600D016C9 /* DefaultCollectionView.swift */; };
-		9C7DC69F5E4EA9EAE5F840D0 /* Pods_RateMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7CDFF64725C20161682CC3 /* Pods_RateMovie.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,8 +85,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0F9F4CCA29F5BDBAFEBF59AD /* Pods-RateMovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RateMovie.release.xcconfig"; path = "Target Support Files/Pods-RateMovie/Pods-RateMovie.release.xcconfig"; sourceTree = "<group>"; };
-		20DF576EDBA2B1F1B24C27E9 /* Pods-RateMovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RateMovie.debug.xcconfig"; path = "Target Support Files/Pods-RateMovie/Pods-RateMovie.debug.xcconfig"; sourceTree = "<group>"; };
 		7036615728EEEB7B0015667B /* RateMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RateMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7036615A28EEEB7B0015667B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7036615C28EEEB7B0015667B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,7 +132,9 @@
 		70F03F8F28F01A6F00D016C9 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		70F03F9128F01DEB00D016C9 /* BaseMovieRepository.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = BaseMovieRepository.swift; sourceTree = "<group>"; tabWidth = 2; };
 		70F03F9328F03F9600D016C9 /* DefaultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCollectionView.swift; sourceTree = "<group>"; };
-		AD7CDFF64725C20161682CC3 /* Pods_RateMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RateMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4CF1C078AB907D52FC00CE8 /* Pods-RateMovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RateMovie.release.xcconfig"; path = "Target Support Files/Pods-RateMovie/Pods-RateMovie.release.xcconfig"; sourceTree = "<group>"; };
+		B31168D26A6499A2B54D143C /* Pods-RateMovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RateMovie.debug.xcconfig"; path = "Target Support Files/Pods-RateMovie/Pods-RateMovie.debug.xcconfig"; sourceTree = "<group>"; };
+		FD932C995D0774F4E35A31FB /* Pods_RateMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RateMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +142,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C7DC69F5E4EA9EAE5F840D0 /* Pods_RateMovie.framework in Frameworks */,
 				706A7D7728FE9E97002B8D06 /* Router.framework in Frameworks */,
+				0C768C86B40454FB6973E613 /* Pods_RateMovie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +169,7 @@
 			children = (
 				706A7D7628FE9E97002B8D06 /* Router.framework */,
 				706A7D7228FE9DA8002B8D06 /* Router.framework */,
-				AD7CDFF64725C20161682CC3 /* Pods_RateMovie.framework */,
+				FD932C995D0774F4E35A31FB /* Pods_RateMovie.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -526,8 +526,8 @@
 		D326A7BCF2BED33D09CC1243 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				20DF576EDBA2B1F1B24C27E9 /* Pods-RateMovie.debug.xcconfig */,
-				0F9F4CCA29F5BDBAFEBF59AD /* Pods-RateMovie.release.xcconfig */,
+				B31168D26A6499A2B54D143C /* Pods-RateMovie.debug.xcconfig */,
+				A4CF1C078AB907D52FC00CE8 /* Pods-RateMovie.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -539,12 +539,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7036618428EEEB7D0015667B /* Build configuration list for PBXNativeTarget "RateMovie" */;
 			buildPhases = (
-				00C489D615F78EFB7DC72398 /* [CP] Check Pods Manifest.lock */,
+				3548BA030CE95D6869CF2040 /* [CP] Check Pods Manifest.lock */,
 				7036615328EEEB7B0015667B /* Sources */,
 				7036615428EEEB7B0015667B /* Frameworks */,
 				7036615528EEEB7B0015667B /* Resources */,
-				BFB8E5C9A3D9171D094FB9E3 /* [CP] Embed Pods Frameworks */,
 				706A7D7928FE9E97002B8D06 /* Embed Frameworks */,
+				88C9F5EA02F6A0769541FD3B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -666,7 +666,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00C489D615F78EFB7DC72398 /* [CP] Check Pods Manifest.lock */ = {
+		3548BA030CE95D6869CF2040 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -688,7 +688,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BFB8E5C9A3D9171D094FB9E3 /* [CP] Embed Pods Frameworks */ = {
+		88C9F5EA02F6A0769541FD3B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -906,7 +906,7 @@
 		};
 		7036618528EEEB7D0015667B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20DF576EDBA2B1F1B24C27E9 /* Pods-RateMovie.debug.xcconfig */;
+			baseConfigurationReference = B31168D26A6499A2B54D143C /* Pods-RateMovie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -934,7 +934,7 @@
 		};
 		7036618628EEEB7D0015667B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F9F4CCA29F5BDBAFEBF59AD /* Pods-RateMovie.release.xcconfig */;
+			baseConfigurationReference = A4CF1C078AB907D52FC00CE8 /* Pods-RateMovie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

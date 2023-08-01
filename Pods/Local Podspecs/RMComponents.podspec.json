@@ -1,0 +1,30 @@
+{
+  "name": "RMComponents",
+  "version": "0.1.0",
+  "summary": "A short description of RMComponents.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/realxnesia/RMComponents",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "realxnesia": "dhika.aditya@kpvendor.id"
+  },
+  "source": {
+    "git": "https://github.com/realxnesia/RMComponents.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "RMComponents/Module/**/*.{swift}",
+  "resources": "RMComponents/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodelid}",
+  "testspecs": [
+    {
+      "name": "Tests",
+      "test_type": "unit",
+      "source_files": "RMComponents/Tests/**/*{.swift}"
+    }
+  ]
+}

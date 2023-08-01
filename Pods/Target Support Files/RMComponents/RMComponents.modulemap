@@ -1,0 +1,6 @@
+framework module RMComponents {
+  umbrella header "RMComponents-umbrella.h"
+
+  export *
+  module * { export * }
+}

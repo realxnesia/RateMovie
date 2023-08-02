@@ -46,6 +46,13 @@ extension MovieFavouritesViewController {
                 self?.tableView.reloadData()
             }
         }
+        viewModel?.isDeleteSuccess.observe(on: self) { [weak self] isDeleteSuccess in
+            guard let isDeleteSuccess else { return }
+            print("[*] isDeleteSuccess: \(isDeleteSuccess)")
+            if isDeleteSuccess {
+                self?.snakeBar(message: "Successfully Deleted Movie Favorites. Wait a moment...")
+            }
+        }
     }
     
     internal func triggerOnTapUnfavourite(movieId: Int) {

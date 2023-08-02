@@ -63,6 +63,7 @@
 		E6575B772A7699D000D2C83F /* CoreDataMovieDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6575B762A7699D000D2C83F /* CoreDataMovieDataStorage.swift */; };
 		E6575B7A2A769C1300D2C83F /* MoviesFavouritesModel+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6575B792A769C1300D2C83F /* MoviesFavouritesModel+Mapping.swift */; };
 		E6575B7C2A769DAA00D2C83F /* MoviesFavourite+DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6575B7B2A769DAA00D2C83F /* MoviesFavourite+DTO.swift */; };
+		E65BD1222A79F9DE00CEEC36 /* TTGSnackBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65BD1212A79F9DE00CEEC36 /* TTGSnackBarManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		E6575B762A7699D000D2C83F /* CoreDataMovieDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMovieDataStorage.swift; sourceTree = "<group>"; };
 		E6575B792A769C1300D2C83F /* MoviesFavouritesModel+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesFavouritesModel+Mapping.swift"; sourceTree = "<group>"; };
 		E6575B7B2A769DAA00D2C83F /* MoviesFavourite+DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesFavourite+DTO.swift"; sourceTree = "<group>"; };
+		E65BD1212A79F9DE00CEEC36 /* TTGSnackBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGSnackBarManager.swift; sourceTree = "<group>"; };
 		ED9E2DAA9FE3B657E2ECFB8A /* Pods_RateMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RateMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -207,6 +209,8 @@
 		7036615928EEEB7B0015667B /* RateMovie */ = {
 			isa = PBXGroup;
 			children = (
+				E65BD11E2A79F54B00CEEC36 /* RMUtilitiesViewKit */,
+				E65BD11D2A79F50500CEEC36 /* RMUtilitiesDataKit */,
 				E6575B682A76962200D2C83F /* RMManager */,
 				7036618D28EEEEFE0015667B /* Presentation */,
 				703661C228EF02630015667B /* Data */,
@@ -258,15 +262,6 @@
 		7036619328EEF1FA0015667B /* Utilities+ExtendKit */ = {
 			isa = PBXGroup;
 			children = (
-				E622D2AE2A75A7D900A05ACD /* Need3rdParties */,
-				7036619428EEF2140015667B /* ExtensionUI.swift */,
-				703661B828EEFCA60015667B /* UIView+Extensions.swift */,
-				E622D28F2A75933A00A05ACD /* UICollectionView+Extensions.swift */,
-				E622D29E2A759CD300A05ACD /* UIViewController+Extensions.swift */,
-				E622D2A62A75A6EA00A05ACD /* UIApplication+Extensions.swift */,
-				E622D2A82A75A71000A05ACD /* CAGradientLayer+Extensions.swift */,
-				E622D2AA2A75A74700A05ACD /* UINavigationBar+Extensions.swift */,
-				E622D2AC2A75A76900A05ACD /* Int+Extensions.swift */,
 			);
 			path = "Utilities+ExtendKit";
 			sourceTree = "<group>";
@@ -547,6 +542,7 @@
 		E622D2AE2A75A7D900A05ACD /* Need3rdParties */ = {
 			isa = PBXGroup;
 			children = (
+				E65BD1202A79F9A700CEEC36 /* TTGSnackBarManager */,
 				E622D2AF2A75A80600A05ACD /* UIViewController+TTGSnackBar.swift */,
 			);
 			path = Need3rdParties;
@@ -613,6 +609,45 @@
 				E6575B7B2A769DAA00D2C83F /* MoviesFavourite+DTO.swift */,
 			);
 			path = EntityMapping;
+			sourceTree = "<group>";
+		};
+		E65BD11D2A79F50500CEEC36 /* RMUtilitiesDataKit */ = {
+			isa = PBXGroup;
+			children = (
+				E622D2AC2A75A76900A05ACD /* Int+Extensions.swift */,
+			);
+			path = RMUtilitiesDataKit;
+			sourceTree = "<group>";
+		};
+		E65BD11E2A79F54B00CEEC36 /* RMUtilitiesViewKit */ = {
+			isa = PBXGroup;
+			children = (
+				E65BD11F2A79F5E400CEEC36 /* Extensions */,
+				E622D2AE2A75A7D900A05ACD /* Need3rdParties */,
+			);
+			path = RMUtilitiesViewKit;
+			sourceTree = "<group>";
+		};
+		E65BD11F2A79F5E400CEEC36 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7036619428EEF2140015667B /* ExtensionUI.swift */,
+				E622D2A62A75A6EA00A05ACD /* UIApplication+Extensions.swift */,
+				703661B828EEFCA60015667B /* UIView+Extensions.swift */,
+				E622D28F2A75933A00A05ACD /* UICollectionView+Extensions.swift */,
+				E622D29E2A759CD300A05ACD /* UIViewController+Extensions.swift */,
+				E622D2A82A75A71000A05ACD /* CAGradientLayer+Extensions.swift */,
+				E622D2AA2A75A74700A05ACD /* UINavigationBar+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E65BD1202A79F9A700CEEC36 /* TTGSnackBarManager */ = {
+			isa = PBXGroup;
+			children = (
+				E65BD1212A79F9DE00CEEC36 /* TTGSnackBarManager.swift */,
+			);
+			path = TTGSnackBarManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -860,6 +895,7 @@
 				70F03F8E28F0150700D016C9 /* MovieIdSimilarResponse.swift in Sources */,
 				E6575B6D2A76973400D2C83F /* CoreDataStorageError.swift in Sources */,
 				703661C928EF05540015667B /* BaseRemoteMovies.swift in Sources */,
+				E65BD1222A79F9DE00CEEC36 /* TTGSnackBarManager.swift in Sources */,
 				E6575B742A76992000D2C83F /* DefaultMovieLocalRepository.swift in Sources */,
 				708CF8E728F2C98200FCD6FE /* BaseLocalMovies.swift in Sources */,
 				7067D94828F1A5C400359AED /* FetchMovieIdSimilarUseCase.swift in Sources */,

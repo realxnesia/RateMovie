@@ -14,6 +14,7 @@ protocol MovieFavouritesViewModelInput {
 
 protocol MovieFavouritesViewModelOutput {
     var movieFavouriteList: Observable<[MoviesFavouritesModel]?> { get }
+    var isDeleteSuccess: Observable<Bool?> { get }
     var errorMessage: Observable<String?> { get }
 }
 
@@ -21,6 +22,7 @@ protocol MovieFavouritesViewModel: MovieFavouritesViewModelInput, MovieFavourite
 
 final class DefaultMovieFavouritesViewModel: MovieFavouritesViewModel {
     let movieFavouriteList: Observable<[MoviesFavouritesModel]?> = Observable(nil)
+    let isDeleteSuccess: Observable<Bool?> = Observable(nil)
     let errorMessage: Observable<String?> = Observable(nil)
     
     private let useCaseFavorite: MovieFavoritesUseCaseProtocol
@@ -40,6 +42,7 @@ extension DefaultMovieFavouritesViewModel {
     func deleteFavorite(with id: Int) {
         DispatchQueue.main.async {
             self.useCaseFavorite.deleteFavorite(with: id)
+            self.isDeleteSuccess.value = true
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

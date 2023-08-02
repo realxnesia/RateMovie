@@ -42,8 +42,7 @@ class TabBarController: UITabBarController {
     let controller = MovieFavouritesViewController()
     controller.viewModel = DefaultMovieFavouritesViewModel(
       useCase: DefaultMovieFavoritesUseCase(
-        repository: DefaultBaseMovieRepository(
-          remoteData: DefaultBaseRemoteMovies(),
+        repository: DefaultMovieFavouritesRepository(
           localData: CoreDataMovieDataStorage()
         )
       )
@@ -77,8 +76,8 @@ extension TabBarController {
     )
     movieListController.viewModel = DefaultMovieListViewModel(
       useCase: DefaultFetchMovieUseCase(
-        repository: DefaultBaseMovieRepository(
-          remoteData: DefaultBaseRemoteMovies(),
+        repository: DefaultMovieListRepository(
+          remoteData: DefaultMovieListRemote(),
           localData: CoreDataMovieDataStorage()
         )
       )
@@ -93,8 +92,7 @@ extension TabBarController {
     let movieFavouritesController = MovieFavouritesViewController()
     movieFavouritesController.viewModel = DefaultMovieFavouritesViewModel(
       useCase: DefaultMovieFavoritesUseCase(
-        repository: DefaultBaseMovieRepository(
-          remoteData: DefaultBaseRemoteMovies(),
+        repository: DefaultMovieFavouritesRepository(
           localData: CoreDataMovieDataStorage()
         )
       )

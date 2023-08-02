@@ -2,26 +2,15 @@
 //  FetchMovieIdSimilarUseCase.swift
 //  RateMovie
 //
-//  Created by DHIKA ADITYA ARE on 08/10/22.
+//  Created by realxnesia on 02/08/23.
 //
 
 import Foundation
 
-protocol FetchMovieIdSimilarProtocol {
-    func getSimilarMovieUC(
-        with movieId: Int,
-        completion: @escaping ([MovieIdSimilarResponse.Result]) -> Void
-    )
-    func getMovieSelectedFavorite(
-        with id: Int,
-        completion: @escaping(Bool) -> Void
-    )
-}
-
 final class DefaultFetchMovieSimilarUseCase: FetchMovieIdSimilarProtocol {
-    private var repository: BaseMovieRepositoryProtocol
+    private var repository: MovieDetailsRepositoryInterface
     
-    init(repository: BaseMovieRepositoryProtocol) {
+    init(repository: MovieDetailsRepositoryInterface) {
         self.repository = repository
     }
 }

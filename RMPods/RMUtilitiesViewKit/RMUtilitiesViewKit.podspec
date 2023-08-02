@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint RMComponents.podspec' to ensure this is a
+# Be sure to run `pod lib lint RMUtilitiesViewKit.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'RMComponents'
+  s.name             = 'RMUtilitiesViewKit'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of RMComponents.'
+  s.summary          = 'A short description of RMUtilitiesViewKit.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,28 +21,24 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/realxnesia/RMComponents'
+  s.homepage         = 'https://github.com/realxnesia/RMUtilitiesViewKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'realxnesia' => 'dhika.aditya@kpvendor.id' }
-  s.source           = { :git => 'https://github.com/realxnesia/RMComponents.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/realxnesia/RMUtilitiesViewKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'RMComponents/Module/**/*.{swift}'
-  s.resource = "RMComponents/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodelid}"
-  
-  s.test_spec 'Tests' do |test_spec|
-    test_spec.source_files = 'RMComponents/Tests/**/*{.swift}'
-  end
-  
-  # Development Framework
-  s.dependency 'RMUtilitiesViewKit'
+  s.source_files = 'RMUtilitiesViewKit/Module/**/*.{swift}'
+  s.resource = "RMUtilitiesViewKit/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodelid}"
   
   # s.resource_bundles = {
-  #   'RMComponents' => ['RMComponents/Assets/*.png']
+  #   'RMUtilitiesViewKit' => ['RMUtilitiesViewKit/Assets/*.png']
   # }
+  
+  # 3rd party frameworks
+    s.dependency 'TTGSnackbar'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

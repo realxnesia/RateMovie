@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import RMComponents
+import RMUtilitiesViewKit
 
 class MovieListViewController: UIViewController, RedNavBar {
     @IBOutlet weak var scrollView: UIScrollView!

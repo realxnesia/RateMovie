@@ -10,8 +10,14 @@ def rmcomponents_pod
       :testspecs => ['Tests']
 end
 
+def rmutilities_viewkit_pod
+  pod 'RMUtilitiesViewKit',
+  :path => 'RMPods/RMUtilitiesViewKit'
+end
+
 def development_pods
   rmcomponents_pod
+  rmutilities_viewkit_pod
 end
 
 target 'RateMovie' do
@@ -26,7 +32,7 @@ target 'RateMovie' do
   pod 'netfox'
   pod 'IQKeyboardManager'
   pod 'Kingfisher'
-  pod 'TTGSnackbar'
+  #pod 'TTGSnackbar'
   
 end
 
@@ -43,6 +49,12 @@ target 'RMComponents_Example' do
   use_frameworks!
   project 'RMPods/RMComponents/Example/RMComponents.xcodeproj'
   rmcomponents_pod
+end
+
+target 'RMUtilitiesViewKit_Example' do
+  use_frameworks!
+  project 'RMPods/RMUtilitiesViewKit/Example/RMUtilitiesViewKit.xcodeproj'
+  rmutilities_viewkit_pod
 end
 
 post_install do |installer|

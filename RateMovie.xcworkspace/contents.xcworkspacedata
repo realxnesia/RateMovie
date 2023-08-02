@@ -10,4 +10,7 @@
    <FileRef
       location = "group:RMPods/RMComponents/Example/RMComponents.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:RMPods/RMUtilitiesViewKit/Example/RMUtilitiesViewKit.xcodeproj">
+   </FileRef>
 </Workspace>

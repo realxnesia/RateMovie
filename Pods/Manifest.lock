@@ -3,8 +3,12 @@ PODS:
   - IQKeyboardManager (6.5.12)
   - Kingfisher (7.9.0)
   - netfox (1.21.0)
-  - RMComponents (0.1.0)
-  - RMComponents/Tests (0.1.0)
+  - RMComponents (0.1.0):
+    - RMUtilitiesViewKit
+  - RMComponents/Tests (0.1.0):
+    - RMUtilitiesViewKit
+  - RMUtilitiesViewKit (0.1.0):
+    - TTGSnackbar
   - TTGSnackbar (1.11.1)
 
 DEPENDENCIES:
@@ -14,7 +18,7 @@ DEPENDENCIES:
   - netfox
   - RMComponents (from `RMPods/RMComponents`)
   - RMComponents/Tests (from `RMPods/RMComponents`)
-  - TTGSnackbar
+  - RMUtilitiesViewKit (from `RMPods/RMUtilitiesViewKit`)
 
 SPEC REPOS:
   trunk:
@@ -27,15 +31,18 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   RMComponents:
     :path: RMPods/RMComponents
+  RMUtilitiesViewKit:
+    :path: RMPods/RMUtilitiesViewKit
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
   Kingfisher: 59f908b6d2f403b0a3e539debb0eec05cb27002c
   netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
-  RMComponents: ff4bd1a96abaf2a13ecd0fc22a4407cd84691a7a
+  RMComponents: 76d4009bab087e77acdadba773345246ebe48d16
+  RMUtilitiesViewKit: 2d4c2bbb8ed0d83ba985c3a29c74a8a6978d21ff
   TTGSnackbar: fea91c62637b5662f808a4c3b55f7631cb7e1ef7
 
-PODFILE CHECKSUM: 15d239141c97339d6a4b83fddca7eac98e676e89
+PODFILE CHECKSUM: 08b51452cf07d8f4a380a35e644478d2e0f3d01d
 
 COCOAPODS: 1.11.3

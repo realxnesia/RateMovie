@@ -23,7 +23,7 @@ extension UICollectionView {
         return refresh.height + 50
     }
     
-    var layoutContentSizeHeight: CGFloat {
+    public var layoutContentSizeHeight: CGFloat {
         let height = collectionViewLayout.collectionViewContentSize.height
         return height != 0 ? height : defaultCollectionViewHeight
     }

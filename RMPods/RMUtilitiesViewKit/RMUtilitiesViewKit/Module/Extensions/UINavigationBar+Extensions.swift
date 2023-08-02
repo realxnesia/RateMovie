@@ -21,7 +21,7 @@ extension UINavigationBar {
         setBackgroundImage(gradientLayer.createGradientImage(), for: UIBarMetrics.default)
     }
     
-    func shouldRemoveShadow(_ value: Bool) -> Void {
+    public func shouldRemoveShadow(_ value: Bool) -> Void {
         if value {
             self.setValue(true, forKey: "hidesShadow")
         } else {

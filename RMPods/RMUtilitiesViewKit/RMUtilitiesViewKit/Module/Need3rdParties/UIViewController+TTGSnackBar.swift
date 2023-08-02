@@ -15,7 +15,7 @@ extension UIViewController {
         return AccessibleTTGSnackBar()
     }
 
-    func snakeBar(
+    public func snakeBar(
         message: String
     ) -> UIView {
         let accessible = accessibleSnackBar.createSnackBar(message: message, duration: .middle)

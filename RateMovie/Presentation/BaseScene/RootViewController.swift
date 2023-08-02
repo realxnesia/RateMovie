@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import RMUtilitiesViewKit
 
 enum BackgroundColorType: String {
   case white = "navigationBackgroundWhite"

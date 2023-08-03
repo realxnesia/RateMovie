@@ -7,9 +7,8 @@
 
 import Foundation
 
-// MARK: - MovieIdSimilarResponse
-struct MovieIdSimilarResponse: Codable {
-    let results: [Result]?
+public struct MovieIdSimilarResponse: Codable {
+    public let results: [Result]?
     let totalPages, totalResults, page: Int?
 
     enum CodingKeys: String, CodingKey {
@@ -19,18 +18,17 @@ struct MovieIdSimilarResponse: Codable {
         case page
     }
     
-    // MARK: - Result
-    struct Result: Codable {
-        let genreIDS: [Int]?
-        let adult: Bool?
-        let backdropPath: String?
-        let id: Int?
-        let originalTitle: String?
-        let voteAverage, popularity: Double?
-        let posterPath, overview, title, originalLanguage: String?
-        let voteCount: Int?
-        let releaseDate: String?
-        let video: Bool?
+    public struct Result: Codable {
+        public let genreIDS: [Int]?
+        public let adult: Bool?
+        public let backdropPath: String?
+        public let id: Int?
+        public let originalTitle: String?
+        public let voteAverage, popularity: Double?
+        public let posterPath, overview, title, originalLanguage: String?
+        public let voteCount: Int?
+        public let releaseDate: String?
+        public let video: Bool?
 
         enum CodingKeys: String, CodingKey {
             case genreIDS = "genre_ids"

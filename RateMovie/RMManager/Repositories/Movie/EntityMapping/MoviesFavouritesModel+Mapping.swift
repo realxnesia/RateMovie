@@ -7,9 +7,10 @@
 
 import Foundation
 import CoreData
+import RMDomainEntities
 
-extension MoviesFavouritesModel {
-    func toMoviesFavouritesEntity(in context: NSManagedObjectContext) -> MoviesFavourite {
+public extension MoviesFavouritesModel {
+    public func toMoviesFavouritesEntity(in context: NSManagedObjectContext) -> MoviesFavourite {
         let entity: MoviesFavourite = .init(context: context)
         entity.id = Int64(id ?? 0)
         entity.title = title

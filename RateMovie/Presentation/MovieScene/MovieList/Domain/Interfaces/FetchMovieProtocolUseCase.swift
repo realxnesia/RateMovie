@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RMDomainEntities
 
 protocol FetchMovieProtocolUseCase {
     func getMovieNowPlayingUC(

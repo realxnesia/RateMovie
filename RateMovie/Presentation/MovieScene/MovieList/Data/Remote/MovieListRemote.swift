@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import RMDomainEntities
 
 struct DefaultMovieListRemote: MovieListRemoteInterface {
     func getMoviewNowPlaying(_ completion: @escaping ([MovieNowPlayingResponse.Result]) -> Void) {

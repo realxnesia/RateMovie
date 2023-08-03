@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-RMDomainEntities_Example.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-RMUtilitiesViewKit_Example.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -50,6 +55,11 @@
 			<false/>
 		</dict>
 		<key>RMComponents.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RMDomainEntities.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

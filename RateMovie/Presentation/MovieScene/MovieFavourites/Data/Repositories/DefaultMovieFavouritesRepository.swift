@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RMDomainEntities
 
 final class DefaultMovieFavouritesRepository: MovieFavouritesInterface {
     private var localData: LocalMovieRepository

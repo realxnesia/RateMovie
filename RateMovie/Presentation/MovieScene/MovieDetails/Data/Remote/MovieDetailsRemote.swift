@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import RMDomainEntities
 
 struct DefaultMovieDetailsRemote: MovieDetailsRemoteInterface {
     func getSimilarMovies(movieId: Int, _ completion: @escaping ([MovieIdSimilarResponse.Result]) -> Void) {

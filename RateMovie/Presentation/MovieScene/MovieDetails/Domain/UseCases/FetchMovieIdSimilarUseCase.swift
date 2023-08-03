@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RMDomainEntities
 
 final class DefaultFetchMovieSimilarUseCase: FetchMovieIdSimilarProtocol {
     private var repository: MovieDetailsRepositoryInterface

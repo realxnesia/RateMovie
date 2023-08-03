@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RMDomainEntities
 
 struct DefaultMovieDetailsRepository: MovieDetailsRepositoryInterface {
     private var remoteData: MovieDetailsRemoteInterface

@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct MovieNowPlayingResponse: Codable {
+public struct MovieNowPlayingResponse: Codable {
     let page: Int?
-    var results: [Result]?
+    public var results: [Result]?
     let dates: Dates?
     let totalPages, totalResults: Int?
 
@@ -19,25 +19,23 @@ struct MovieNowPlayingResponse: Codable {
         case totalResults = "total_results"
     }
     
-    // MARK: - Dates
     struct Dates: Codable {
         let maximum, minimum: String?
     }
 
-    // MARK: - Result
-    struct Result: Codable {
-        var posterPath: String?
-        var adult: Bool?
-        var overview, releaseDate: String?
-        var genreIDS: [Int]?
-        var id: Int?
-        var originalTitle: String?
-        var originalLanguage: String?
-        var title, backdropPath: String?
-        var popularity: Double?
-        var voteCount: Int?
-        var video: Bool?
-        var voteAverage: Double?
+    public struct Result: Codable {
+        public var posterPath: String?
+        public var adult: Bool?
+        public var overview, releaseDate: String?
+        public var genreIDS: [Int]?
+        public var id: Int?
+        public var originalTitle: String?
+        public var originalLanguage: String?
+        public var title, backdropPath: String?
+        public var popularity: Double?
+        public var voteCount: Int?
+        public var video: Bool?
+        public var voteAverage: Double?
 
         enum CodingKeys: String, CodingKey {
             case posterPath = "poster_path"

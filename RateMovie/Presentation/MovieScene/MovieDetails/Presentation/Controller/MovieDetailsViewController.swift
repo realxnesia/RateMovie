@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import RMComponents
+import RMDomainEntities
 
 class MovieDetailsViewController: UIViewController, ClearNavBar {
     @IBOutlet weak var headerImageView: UIImageView!

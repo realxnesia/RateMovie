@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RMDomainEntities
 
 protocol MovieListRemoteInterface {
     func getMoviewNowPlaying(_ completion: @escaping([MovieNowPlayingResponse.Result]) -> Void)

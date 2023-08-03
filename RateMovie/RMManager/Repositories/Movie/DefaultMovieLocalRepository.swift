@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import RMDomainEntities
 
 extension CoreDataMovieDataStorage: LocalMovieRepository {
     func getAllFavouriteMovie(completion: @escaping ([MoviesFavouritesModel]) -> Void) {

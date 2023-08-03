@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RMDomainEntities
 
 final class DefaultMovieFavoritesUseCase: MovieFavoritesUseCaseProtocol {
     private var repository: MovieFavouritesInterface

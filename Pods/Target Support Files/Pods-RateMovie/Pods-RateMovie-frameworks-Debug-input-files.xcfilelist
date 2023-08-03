@@ -3,6 +3,7 @@ ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/RMComponents/RMComponents.framework
+${BUILT_PRODUCTS_DIR}/RMDomainEntities/RMDomainEntities.framework
 ${BUILT_PRODUCTS_DIR}/RMUtilitiesViewKit/RMUtilitiesViewKit.framework
 ${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework
 ${BUILT_PRODUCTS_DIR}/netfox/netfox.framework

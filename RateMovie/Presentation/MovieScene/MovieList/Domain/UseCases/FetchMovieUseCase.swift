@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RMDomainEntities
 
 final class DefaultFetchMovieUseCase: FetchMovieProtocolUseCase {
     private let repository: MovieListRepositoryInterface

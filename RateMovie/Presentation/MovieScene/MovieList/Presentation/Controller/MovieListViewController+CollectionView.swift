@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import RMComponents
+import RMDomainEntities
 
 extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(

@@ -20,10 +20,16 @@ def rmdomain_entities_pod
   :path => 'RMPods/RMDomainEntities'
 end
 
+def rmmanagers_pod
+  pod 'RMManagers',
+  :path => 'RMPods/RMManagers'
+end
+
 def development_pods
   rmcomponents_pod
   rmutilities_viewkit_pod
   rmdomain_entities_pod
+  rmmanagers_pod
 end
 
 target 'RateMovie' do
@@ -67,6 +73,12 @@ target 'RMDomainEntities_Example' do
   use_frameworks!
   project 'RMPods/RMDomainEntities/Example/RMDomainEntities.xcodeproj'
   rmdomain_entities_pod
+end
+
+target 'RMManagers_Example' do
+  use_frameworks!
+  project 'RMPods/RMManagers/Example/RMManagers.xcodeproj'
+  rmmanagers_pod
 end
 
 post_install do |installer|

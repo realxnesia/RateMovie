@@ -7,6 +7,7 @@
 
 import Foundation
 import RMDomainEntities
+import RMManagers
 
 final class DefaultMovieListRepository: MovieListRepositoryInterface {
     private var remoteData: MovieListRemoteInterface

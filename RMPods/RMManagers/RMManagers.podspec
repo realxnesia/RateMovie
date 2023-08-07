@@ -31,7 +31,17 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '10.0'
   
   s.source_files = 'RMManagers/Module/**/*.{swift}'
-  s.resource = "RMManagers/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodelid}"
+  s.resource = [
+    "RMManagers/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodelId,xcdatamodel}",
+    "RMManagers/Module/PersistenceStorage/RateMovie.xcdatamodeld",
+    "RMManagers/Module/PersistenceStorage/RateMovie.xcdatamodeld/*.xcdatamodel"
+  ]
+  s.framework  = 'CoreData'
+  s.requires_arc = true
+  
+  
+  
+  s.dependency 'RMDomainEntities'
   
   # s.resource_bundles = {
   #   'RMManagers' => ['RMManagers/Assets/*.png']

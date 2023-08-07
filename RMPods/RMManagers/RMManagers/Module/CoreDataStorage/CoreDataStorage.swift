@@ -8,11 +8,18 @@
 import Foundation
 import CoreData
 
-final class CoreDataStorage {
-  static let instance = CoreDataStorage()
+public final class CoreDataStorage {
+  public static let instance = CoreDataStorage()
   private init () { }
   private lazy var persistentContainer: NSPersistentContainer = {
-    let container = NSPersistentContainer(name: "RateMovie")
+    guard
+      let modelURL = Bundle(for: Self.self).resource.url(
+        forResource: "RateMovie", withExtension: "momd"
+      ),
+      let mom = NSManagedObjectModel(contentsOf: modelURL)
+    else { fatalError("Unable to located Core Data model") }
+    
+    let container = NSPersistentContainer(name: "RateMovie", managedObjectModel: mom)
     container.loadPersistentStores { _, error in
       if let error = error as NSError? {
         assertionFailure("CoreDataStorage Unresolved error \(error), \(error.userInfo)")
@@ -20,7 +27,7 @@ final class CoreDataStorage {
     }
     return container
   }()
-  func saveContext() {
+  public func saveContext() {
     let context = persistentContainer.viewContext
     if context.hasChanges {
       do {
@@ -36,7 +43,7 @@ final class CoreDataStorage {
 extension CoreDataStorage {
   func performMainQueueAsync(_ block: @escaping(NSManagedObjectContext) -> Void) {
     let context = persistentContainer.viewContext
-      
+    
     context.perform {
       block(context)
     }

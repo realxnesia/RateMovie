@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import RMDomainEntities
 
-protocol LocalMovieRepository {
-    func getAllFavouriteMovie(
-        completion: @escaping(_ members: [MoviesFavouritesModel]) -> Void
-    )
-    func getSelectedFavourite(
-        _ id: Int,
-        completion: @escaping(_ bool: Bool) -> Void
-    )
-    func addFavourite(_ favouriteModel: MoviesFavouritesModel)
-    func deleteFavourite(with id: Int)
+public protocol LocalMovieRepository {
+  func getAllFavouriteMovie(
+    completion: @escaping(_ members: [MoviesFavouritesModel]) -> Void
+  )
+  func getSelectedFavourite(
+    _ id: Int,
+    completion: @escaping(_ bool: Bool) -> Void
+  )
+  func addFavourite(_ favouriteModel: MoviesFavouritesModel)
+  func deleteFavourite(with id: Int)
 }

@@ -8,6 +8,8 @@ PODS:
   - RMComponents/Tests (0.1.0):
     - RMUtilitiesViewKit
   - RMDomainEntities (0.1.0)
+  - RMManagers (0.1.0):
+    - RMDomainEntities
   - RMUtilitiesViewKit (0.1.0):
     - TTGSnackbar
   - TTGSnackbar (1.11.1)
@@ -20,6 +22,7 @@ DEPENDENCIES:
   - RMComponents (from `RMPods/RMComponents`)
   - RMComponents/Tests (from `RMPods/RMComponents`)
   - RMDomainEntities (from `RMPods/RMDomainEntities`)
+  - RMManagers (from `RMPods/RMManagers`)
   - RMUtilitiesViewKit (from `RMPods/RMUtilitiesViewKit`)
 
 SPEC REPOS:
@@ -35,6 +38,8 @@ EXTERNAL SOURCES:
     :path: RMPods/RMComponents
   RMDomainEntities:
     :path: RMPods/RMDomainEntities
+  RMManagers:
+    :path: RMPods/RMManagers
   RMUtilitiesViewKit:
     :path: RMPods/RMUtilitiesViewKit
 
@@ -45,9 +50,10 @@ SPEC CHECKSUMS:
   netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
   RMComponents: 76d4009bab087e77acdadba773345246ebe48d16
   RMDomainEntities: 7520a7af71a4f4b6e431ef59d92fc60d31f8efd5
+  RMManagers: 0d4001e8ce99ec2f3862f42b18ff3a4856e6f2c5
   RMUtilitiesViewKit: 2d4c2bbb8ed0d83ba985c3a29c74a8a6978d21ff
   TTGSnackbar: fea91c62637b5662f808a4c3b55f7631cb7e1ef7
 
-PODFILE CHECKSUM: c98898324b252cef5b7eb725e01d7d2213215428
+PODFILE CHECKSUM: cb06273b82071084d78a9fe3364bab0dc48a00c2
 
 COCOAPODS: 1.11.3

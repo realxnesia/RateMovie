@@ -217,10 +217,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RMManagers_Example/Pods-RMManagers_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RMDomainEntities/RMDomainEntities.framework",
 				"${BUILT_PRODUCTS_DIR}/RMManagers/RMManagers.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMDomainEntities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMManagers.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

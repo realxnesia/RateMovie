@@ -8,25 +8,25 @@
 import Foundation
 import CoreData
 
-final class CoreDataMovieDataStorage {
-    let coreDataStorage: CoreDataStorage
-    init(coreDataStorage: CoreDataStorage = CoreDataStorage.instance) {
-      self.coreDataStorage = coreDataStorage
-    }
+public final class CoreDataMovieDataStorage {
+  let coreDataStorage: CoreDataStorage
+  public init(coreDataStorage: CoreDataStorage = CoreDataStorage.instance) {
+    self.coreDataStorage = coreDataStorage
+  }
 }
 
 extension CoreDataMovieDataStorage {
-    func fetchData() -> NSFetchRequest<MoviesFavourite> {
-      let request: NSFetchRequest = MoviesFavourite.fetchRequest()
-      return request
-    }
-    func deleteData(in context: NSManagedObjectContext) {
-      let request = fetchData()
-      do {
-        let result = try context.fetch(request)
-        for object in result {
-          context.delete(object)
-        }
-      } catch {}
-    }
+  func fetchData() -> NSFetchRequest<MoviesFavourite> {
+    let request: NSFetchRequest = MoviesFavourite.fetchRequest()
+    return request
+  }
+  func deleteData(in context: NSManagedObjectContext) {
+    let request = fetchData()
+    do {
+      let result = try context.fetch(request)
+      for object in result {
+        context.delete(object)
+      }
+    } catch {}
+  }
 }

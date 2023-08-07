@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import RMManagers
 
 class TabBarController: UITabBarController {
   override func viewDidLoad() {

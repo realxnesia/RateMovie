@@ -7,16 +7,16 @@
 
 import Foundation
 import CoreData
-import RateMovie
+import RMDomainEntities
 
 extension MoviesFavourite {    
-    func toDTO() -> MoviesFavouritesModel {
-        return MoviesFavouritesModel.init(
-            id: Int(id),
-            title: title,
-            originalLanguage: originalLanguage,
-            posterPath: posterPath,
-            voteAverage: voteAverage
-        )
-    }
+  func toDTO() -> MoviesFavouritesModel {
+    return MoviesFavouritesModel.init(
+      id: Int(id),
+      title: title,
+      originalLanguage: originalLanguage,
+      posterPath: posterPath,
+      voteAverage: voteAverage
+    )
+  }
 }

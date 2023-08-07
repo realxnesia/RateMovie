@@ -6,26 +6,29 @@
 //
 
 import Foundation
-import Alamofire
 import RMDomainEntities
+import RMNetworking
 
 struct DefaultMovieDetailsRemote: MovieDetailsRemoteInterface {
-    func getSimilarMovies(movieId: Int, _ completion: @escaping ([MovieIdSimilarResponse.Result]) -> Void) {
-      AF.request(
-        Endpoint.baseURL + Endpoint.Movies.baseMovie + "/\(movieId)" + Endpoint.Movies.getMovieSimilar + Endpoint.apiKey + "&language=en-US&page=1",
+    func getSimilarMovies(
+      movieId: Int, _
+      completion: @escaping ([MovieIdSimilarResponse.Result]) -> Void
+    ) {
+      let url = Endpoint.baseURL + Endpoint.Movies.baseMovie + "/\(movieId)" + Endpoint.Movies.getMovieSimilar + Endpoint.apiKey + "&language=en-US&page=1"
+      NetworkingWrapper.request(
+        url: url,
         method: .get,
-        encoding: JSONEncoding.default
-      )
-      .validate(statusCode: 200..<300)
-      .responseDecodable(of: MovieIdSimilarResponse.self) { data in
-        switch data.result {
-        case .success(let data):
-          if let result = data.results {
-            completion(result)
+        encoding: EncodingMode().jsonEncoding,
+        headers: [:]) { (response: Result<MovieIdSimilarResponse, Error>) in
+          switch response {
+          case .success(let data):
+            if let result = data.results {
+              print(result)
+              completion(result)
+            }
+          case .failure(let failure):
+            print("[X] Error: \(failure)")
           }
-        case .failure(let error):
-          print(error.localizedDescription)
         }
-      }
     }
 }

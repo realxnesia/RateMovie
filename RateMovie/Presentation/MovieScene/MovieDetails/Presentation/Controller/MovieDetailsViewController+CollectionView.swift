@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import RMComponents
+import RMNetworking
 
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(

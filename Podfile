@@ -25,11 +25,17 @@ def rmmanagers_pod
   :path => 'RMPods/RMManagers'
 end
 
+def rmnetworking_pod
+  pod 'RMNetworking',
+  :path => 'RMPods/RMNetworking'
+end
+
 def development_pods
   rmcomponents_pod
   rmutilities_viewkit_pod
   rmdomain_entities_pod
   rmmanagers_pod
+  rmnetworking_pod
 end
 
 target 'RateMovie' do
@@ -40,8 +46,8 @@ target 'RateMovie' do
   development_pods
   
   # Pods for RateMovie
-  pod 'Alamofire'
-  pod 'netfox'
+  #pod 'Alamofire'
+  #pod 'netfox'
   pod 'IQKeyboardManager'
   pod 'Kingfisher'
   #pod 'TTGSnackbar'
@@ -79,6 +85,12 @@ target 'RMManagers_Example' do
   use_frameworks!
   project 'RMPods/RMManagers/Example/RMManagers.xcodeproj'
   rmmanagers_pod
+end
+
+target 'RMNetworking_Example' do
+  use_frameworks!
+  project 'RMPods/RMNetworking/Example/RMNetworking.xcodeproj'
+  rmnetworking_pod
 end
 
 post_install do |installer|

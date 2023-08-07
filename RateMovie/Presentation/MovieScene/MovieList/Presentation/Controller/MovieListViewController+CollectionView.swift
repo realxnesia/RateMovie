@@ -10,6 +10,7 @@ import UIKit
 import RMComponents
 import RMDomainEntities
 import RMManagers
+import RMNetworking
 
 extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(

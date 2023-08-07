@@ -5,6 +5,7 @@ ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/RMComponents/RMComponents.framework
 ${BUILT_PRODUCTS_DIR}/RMDomainEntities/RMDomainEntities.framework
 ${BUILT_PRODUCTS_DIR}/RMManagers/RMManagers.framework
+${BUILT_PRODUCTS_DIR}/RMNetworking/RMNetworking.framework
 ${BUILT_PRODUCTS_DIR}/RMUtilitiesViewKit/RMUtilitiesViewKit.framework
 ${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework
 ${BUILT_PRODUCTS_DIR}/netfox/netfox.framework

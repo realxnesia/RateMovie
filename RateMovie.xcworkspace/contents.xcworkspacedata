@@ -19,4 +19,7 @@
    <FileRef
       location = "group:RMPods/RMManagers/Example/RMManagers.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:RMPods/RMNetworking/Example/RMNetworking.xcodeproj">
+   </FileRef>
 </Workspace>

@@ -10,19 +10,21 @@ PODS:
   - RMDomainEntities (0.1.0)
   - RMManagers (0.1.0):
     - RMDomainEntities
+  - RMNetworking (0.1.0):
+    - Alamofire
+    - netfox
   - RMUtilitiesViewKit (0.1.0):
     - TTGSnackbar
   - TTGSnackbar (1.11.1)
 
 DEPENDENCIES:
-  - Alamofire
   - IQKeyboardManager
   - Kingfisher
-  - netfox
   - RMComponents (from `RMPods/RMComponents`)
   - RMComponents/Tests (from `RMPods/RMComponents`)
   - RMDomainEntities (from `RMPods/RMDomainEntities`)
   - RMManagers (from `RMPods/RMManagers`)
+  - RMNetworking (from `RMPods/RMNetworking`)
   - RMUtilitiesViewKit (from `RMPods/RMUtilitiesViewKit`)
 
 SPEC REPOS:
@@ -40,6 +42,8 @@ EXTERNAL SOURCES:
     :path: RMPods/RMDomainEntities
   RMManagers:
     :path: RMPods/RMManagers
+  RMNetworking:
+    :path: RMPods/RMNetworking
   RMUtilitiesViewKit:
     :path: RMPods/RMUtilitiesViewKit
 
@@ -51,9 +55,10 @@ SPEC CHECKSUMS:
   RMComponents: 76d4009bab087e77acdadba773345246ebe48d16
   RMDomainEntities: 7520a7af71a4f4b6e431ef59d92fc60d31f8efd5
   RMManagers: 0d4001e8ce99ec2f3862f42b18ff3a4856e6f2c5
+  RMNetworking: 282b87de26f6e1265e48e88a44ad608ea8870635
   RMUtilitiesViewKit: 2d4c2bbb8ed0d83ba985c3a29c74a8a6978d21ff
   TTGSnackbar: fea91c62637b5662f808a4c3b55f7631cb7e1ef7
 
-PODFILE CHECKSUM: cb06273b82071084d78a9fe3364bab0dc48a00c2
+PODFILE CHECKSUM: ee69ba215f506a26913f4ef4fc60fe4a504351aa
 
 COCOAPODS: 1.11.3

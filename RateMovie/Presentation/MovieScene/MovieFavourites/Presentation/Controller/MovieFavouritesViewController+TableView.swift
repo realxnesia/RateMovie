@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import RMComponents
+import RMNetworking
 
 extension MovieFavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(

@@ -16,6 +16,7 @@ class MovieDetailsViewController: UIViewController, ClearNavBar {
     @IBOutlet weak var contentImageView: UIImageView!
     @IBOutlet weak var titleMovieLabel: UILabel!
     @IBOutlet weak var rateMovieLabel: UILabel!
+    @IBOutlet weak var categoryAdultLabel: UILabel!
     
     @IBOutlet weak var overviewDescriptionLabel: UILabel!
     @IBOutlet weak var recommendationCollectionView: UICollectionView!
@@ -86,9 +87,8 @@ extension MovieDetailsViewController {
         }
         
         titleMovieLabel.text = viewModel?.getMovieResult().originalTitle
-        if let rateMovie = viewModel?.getMovieResult().voteAverage {
-            rateMovieLabel.text = "⭐" + String(rateMovie)
-        }
+        rateMovieLabel.text = viewModel?.getMovieResult().formattedRating
+        categoryAdultLabel.text = viewModel?.getMovieResult().formattedAdult
         overviewDescriptionLabel.text = viewModel?.getMovieResult().overview
     }
     
@@ -102,7 +102,6 @@ extension MovieDetailsViewController {
                 self?.recommendationCollectionView.layoutIfNeeded()
             }
         }
-        viewModel?.isFavorite.observe(on: self, observerBlock: { _ in
-        })
+        viewModel?.isFavorite.observe(on: self, observerBlock: { _ in })
     }
 }

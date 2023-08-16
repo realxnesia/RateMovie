@@ -4,8 +4,12 @@ PODS:
   - Kingfisher (7.9.0)
   - netfox (1.21.0)
   - RMComponents (0.1.0):
+    - Kingfisher
+    - RMDomainEntities
     - RMUtilitiesViewKit
   - RMComponents/Tests (0.1.0):
+    - Kingfisher
+    - RMDomainEntities
     - RMUtilitiesViewKit
   - RMDomainEntities (0.1.0)
   - RMManagers (0.1.0):
@@ -52,7 +56,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
   Kingfisher: 59f908b6d2f403b0a3e539debb0eec05cb27002c
   netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
-  RMComponents: 76d4009bab087e77acdadba773345246ebe48d16
+  RMComponents: c26a076050f4b77758d6004a76eacac769cdf665
   RMDomainEntities: 7520a7af71a4f4b6e431ef59d92fc60d31f8efd5
   RMManagers: 0d4001e8ce99ec2f3862f42b18ff3a4856e6f2c5
   RMNetworking: 282b87de26f6e1265e48e88a44ad608ea8870635

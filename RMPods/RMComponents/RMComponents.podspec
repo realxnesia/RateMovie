@@ -39,6 +39,10 @@ TODO: Add long description of the pod here.
   
   # Development Framework
   s.dependency 'RMUtilitiesViewKit'
+  s.dependency 'RMDomainEntities'
+  
+  # 3rd Party
+  s.dependency 'Kingfisher'
   
   # s.resource_bundles = {
   #   'RMComponents' => ['RMComponents/Assets/*.png']

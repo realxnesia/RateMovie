@@ -39,8 +39,6 @@ TODO: Add long description of the pod here.
   s.framework  = 'CoreData'
   s.requires_arc = true
   
-  
-  
   s.dependency 'RMDomainEntities'
   
   # s.resource_bundles = {

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Kingfisher
+import RMDomainEntities
 
 public class MovieItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
@@ -16,6 +18,7 @@ public class MovieItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet public weak var movieLanguageLabel: UILabel!
     @IBOutlet public weak var movieFavoriteImageView: UIImageView!
     
+    public var viewModel: MovieItemCollectionViewViewModel!
     public var onFavouriteTapped: (() -> Void)?
     
     public static let identifier = "MovieItemCollectionViewCell"
@@ -31,6 +34,35 @@ public class MovieItemCollectionViewCell: UICollectionViewCell {
         moviePreviewImageView.contentMode = .scaleAspectFit
         setupGesture()
         setupShadow()
+    }
+    
+    public func setView() {
+        movieTitleLabel.text = viewModel.title
+        movieRateLabel.text = viewModel.rating
+        movieLanguageLabel.text = viewModel.language
+        if #available(iOS 13.0, *) {
+            movieFavoriteImageView.image = viewModel.isFavourite ?? false
+            ? UIImage(systemName: "bookmark.fill")
+            : UIImage(systemName: "bookmark")
+        } else {
+            // Fallback on earlier versions
+        }
+        configurePoster()
+    }
+    
+    public func hiddenFafouriteView() {
+        favoriteView.isHidden = true
+        movieFavoriteImageView.isHidden = true
+    }
+    
+    private func configurePoster() {
+        moviePreviewImageView.kf.setImage(
+            with: URL(string: viewModel.posterUrl ?? ""),
+            placeholder: UIImage.init(named: ""),
+            options: [.transition(.fade(0))],
+            progressBlock: nil,
+            completionHandler: nil
+        )
     }
     
     public override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
@@ -61,6 +93,4 @@ public class MovieItemCollectionViewCell: UICollectionViewCell {
         self.containerView.layer.shadowColor = UIColor.red.cgColor
         self.containerView.clipsToBounds = true
     }
-    
-
 }

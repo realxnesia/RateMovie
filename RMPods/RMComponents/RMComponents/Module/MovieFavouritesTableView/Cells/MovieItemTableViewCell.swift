@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Kingfisher
+import RMDomainEntities
 
 public class MovieItemTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
@@ -15,6 +17,7 @@ public class MovieItemTableViewCell: UITableViewCell {
     @IBOutlet public weak var rateLabel: UILabel!
     @IBOutlet weak var favoriteImageView: UIImageView!
     
+    public var viewModel: MovieItemTableViewCellViewModel!
     public var onTapFavourite: (() -> Void)?
      
     public static let identifier = "MovieItemTableViewCell"
@@ -34,6 +37,23 @@ public class MovieItemTableViewCell: UITableViewCell {
 
     public override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    public func setView() {
+        titleLabel.text = viewModel.title
+        rateLabel.text = viewModel.rating
+        configurePoster(posterUrl: viewModel.posterUrl)
+    }
+    
+    private func configurePoster(posterUrl: String?) {
+        guard let posterUrl else { return }
+        moviePreviewImageView.kf.setImage(
+            with: URL(string: posterUrl),
+            placeholder: UIImage.init(named: ""),
+            options: [.transition(.fade(0))],
+            progressBlock: nil,
+            completionHandler: nil
+        )
     }
     
     private func setupShadow() {

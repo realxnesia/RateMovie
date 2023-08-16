@@ -30,28 +30,12 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
                 for: indexPath
             ) as? MovieItemCollectionViewCell
         else { return UICollectionViewCell() }
-        
         let data = viewModel?.movieList.value[indexPath.row]
-        movieCell.movieTitleLabel.text = data?.title
-        if let movieRate = data?.voteAverage {
-            movieCell.movieRateLabel.text = "⭐ \(String(describing: movieRate))/10"
-        }
-        movieCell.movieLanguageLabel.text = data?.originalLanguage
-        if let url = data?.posterPath, let imageUrl = URL(string: Endpoint.Images.baseImage + url) {
-            movieCell.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
-        }
-        
-        movieCell.movieFavoriteImageView.image = data?.isFavorite! ?? false
-        ? UIImage(systemName: "bookmark.fill")
-        : UIImage(systemName: "bookmark")
+        movieCell.viewModel = data?.toMovieListViewModel(
+            baseUrl: Endpoint.Images.baseImage
+        )
+        movieCell.setView()
         movieCell.onFavouriteTapped = { [weak self] in
-            let selectedData = MoviesFavouritesModel(
-                id: data?.id,
-                title: data?.title,
-                originalLanguage: data?.originalLanguage,
-                posterPath: data?.posterPath,
-                voteAverage: data?.voteAverage
-            )
             if let isFavorite = data?.isFavorite {
                 if isFavorite {
                     guard let id = data?.id else { return }
@@ -60,15 +44,16 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
                         systemName: "bookmark"
                     )
                 } else {
+                    guard
+                        let selectedData = data?.moviesFavouriteModel
+                    else { return }
                     self?.viewModel?.addMovieToFavorite(which: selectedData)
                     movieCell.movieFavoriteImageView.image = UIImage(
                         systemName: "bookmark.fill"
                     )
                 }
             }
-
         }
-        
         return movieCell
     }
     

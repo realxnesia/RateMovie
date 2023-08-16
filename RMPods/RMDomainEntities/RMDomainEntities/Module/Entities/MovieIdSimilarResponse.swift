@@ -46,5 +46,29 @@ public struct MovieIdSimilarResponse: Codable {
             case video
         }
     }
+}
 
+extension MovieIdSimilarResponse.Result {
+    public func toMovieListViewModel(baseUrl: String) -> MovieItemCollectionViewViewModel {
+        return MovieItemCollectionViewViewModel(
+            isFavourite: nil,
+            title: title,
+            rating: formattedRating,
+            language: originalLanguage,
+            adult: formattedAdult,
+            posterUrl: baseUrl + (posterPath ?? "")
+        )
+    }
+    
+    private var formattedRating: String {
+        guard let voteAverage else { return "⭐ Unavailable" }
+        return "⭐ \(String(describing: voteAverage))/10"
+    }
+    
+    public var formattedAdult: String {
+        guard let adult else { return "Content Unknown" }
+        return adult
+        ? "Movie Adult"
+        : "Movie Family Friendly"
+    }
 }

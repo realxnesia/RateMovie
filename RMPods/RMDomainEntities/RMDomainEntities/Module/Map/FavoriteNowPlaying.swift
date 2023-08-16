@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Result
 public struct FavoriteNowPlaying: Codable {
     public let isFavorite: Bool?
     public let posterPath: String?
@@ -23,7 +22,23 @@ public struct FavoriteNowPlaying: Codable {
     public let video: Bool?
     public let voteAverage: Double?
 
-    public init(isFavorite: Bool?, posterPath: String?, adult: Bool?, overview: String?, releaseDate: String?, genreIDS: [Int]?, id: Int?, originalTitle: String?, originalLanguage: String?, title: String?, backdropPath: String?, popularity: Double?, voteCount: Int?, video: Bool?, voteAverage: Double?) {
+    public init(
+        isFavorite: Bool?,
+        posterPath: String?,
+        adult: Bool?,
+        overview: String?,
+        releaseDate: String?,
+        genreIDS: [Int]?,
+        id: Int?,
+        originalTitle: String?,
+        originalLanguage: String?,
+        title: String?,
+        backdropPath: String?,
+        popularity: Double?,
+        voteCount: Int?,
+        video: Bool?,
+        voteAverage: Double?
+    ) {
         self.isFavorite = isFavorite
         self.posterPath = posterPath
         self.adult = adult
@@ -41,3 +56,41 @@ public struct FavoriteNowPlaying: Codable {
         self.voteAverage = voteAverage
     }
 }
+
+extension FavoriteNowPlaying {
+    public func toMovieListViewModel(baseUrl: String) -> MovieItemCollectionViewViewModel {
+        return MovieItemCollectionViewViewModel(
+            isFavourite: isFavorite,
+            title: title,
+            rating: formattedRating,
+            language: originalLanguage,
+            adult: formattedAdult,
+            posterUrl: baseUrl + (posterPath ?? "")
+        )
+    }
+    
+    public var formattedRating: String {
+        guard let voteAverage else { return "⭐ Unavailable" }
+        return "⭐ \(String(describing: voteAverage))/10"
+    }
+    
+    public var formattedAdult: String {
+        guard let adult else { return "Content Unknown" }
+        return adult
+        ? "Movie Adult"
+        : "Movie Family Friendly"
+    }
+}
+
+extension FavoriteNowPlaying {
+    public var moviesFavouriteModel: MoviesFavouritesModel {
+        return MoviesFavouritesModel(
+            id: id,
+            title: title,
+            originalLanguage: originalLanguage,
+            posterPath: posterPath,
+            voteAverage: voteAverage
+        )
+    }
+}
+

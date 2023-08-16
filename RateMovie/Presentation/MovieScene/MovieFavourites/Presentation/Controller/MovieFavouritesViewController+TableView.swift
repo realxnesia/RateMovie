@@ -29,16 +29,10 @@ extension MovieFavouritesViewController: UITableViewDelegate, UITableViewDataSou
             ) as? MovieItemTableViewCell
         else { return UITableViewCell() }
         let data = viewModel?.movieFavouriteList.value?[indexPath.row]
-        movieCell.titleLabel.text = data?.title
-        if let movieRate = data?.voteAverage {
-            movieCell.rateLabel.text = "⭐ " + String(movieRate)
-        }
-        if let url = data?.posterPath,
-           let imageUrl = URL(string: Endpoint.Images.baseImage + url)
-        {
-            movieCell.moviePreviewImageView.kf.setImage(with: imageUrl, placeholder: UIImage.init(named: ""), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: nil)
-        }
-        
+        movieCell.viewModel = data?.toMovieListCollectionViewViewModel(
+            baseUrl: Endpoint.Images.baseImage
+        )
+        movieCell.setView()
         movieCell.onTapFavourite = { [weak self] in
             guard let id = data?.id else { return }
             self?.triggerOnTapUnfavourite(movieId: id)
